@@ -1,0 +1,9 @@
+﻿  Block.cpp
+  Blockchain.cpp
+  sha256.cpp
+G:\TestChain-master\Visual Studio\TestChain\TestChain\sha256.cpp(124,62): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+  TestChain.cpp
+  Vote.cpp
+  Generating Code...
+G:\TestChain-master\Visual Studio\TestChain\TestChain\TestChain.cpp(58): warning C4715: 'menu': not all control paths return a value
+  TestChain.vcxproj -> G:\TestChain-master\Visual Studio\TestChain\x64\Debug\TestChain.exe
