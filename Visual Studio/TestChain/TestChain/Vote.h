@@ -1,8 +1,11 @@
-#pragma once
+#pragma
+//#ifndef TESTCHAIN_VOTE_H
+//#define TESTCHAIN_VOTE_H
 #include <iostream>
 //#include <ctype.h>
 
 class Vote{
+
 public:
 	//std::string voteText;
 	char yesOrNo;
@@ -20,6 +23,8 @@ public:
 	void initializeValidVoterIDs();
 
 	char userInputChar;
+
+	std::string newVote;
 	std::string unverifiedVotes;
 	void userInputVote();
 
@@ -34,3 +39,4 @@ private:
 	time_t _tTime;
 };
 
+//#endif //TESTCHAIN_VOTE_H

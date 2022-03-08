@@ -42,6 +42,7 @@ void Vote::userInputVote()
 	{
 		unverifiedVotes += userVoterID + "," + userInputChar+ "\n";
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
+		std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
 	}	
 	if (yesOrNo == 'N' || yesOrNo == 'n')
 	{

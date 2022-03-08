@@ -2,27 +2,40 @@
 //
 #include <iostream>
 #include <Windows.h>
+#include <chrono>
+#include <thread>
 #include "Blockchain.h"
 #include "Vote.h"
 
 Vote testVote = Vote();
 
-
-void mining(Vote testVote) 
+//
+using namespace std::chrono_literals;
+void mining(Vote testVote)
 {//	manually mines three blocks 
  //	@TODO Blockchain need to continue / end automaticly 
  // @TODO Data need to be populated with votes users votes
+	
 	Blockchain bChain = Blockchain();
-
+	//std::this_thread::sleep_for(5000ms);
 	//bChain.AddBlock(Block(1, "Block 1 Data"));
-	bChain.AddBlock(Block(1, testVote.unverifiedVotes),testVote.unverifiedVotes);
+	
+	std::cout << "TEST: unverifiedVotes Value Before Block  " << testVote.unverifiedVotes << std::endl;
+	bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	std::cout << "TEST: unverifiedVotes Value After Block  " << testVote.unverifiedVotes << std::endl;
 	testVote.unverifiedVotes = "";
+	std::cout << "TEST: unverifiedVotes Value After Reset  " << testVote.unverifiedVotes << std::endl;
+	std::this_thread::sleep_for(45000ms);
 	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
-
-	bChain.AddBlock(Block(3, "Block 3 Data"),"Block 3 Data");
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(45000ms);
+	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(45000ms);
 }
-void voting() 
+void voting()
 {//	Manually starts voting
+	std::this_thread::sleep_for(10000ms);
 	std::cout << "TEST VOTING" << std::endl;
 	testVote.initializeVoteCandidates();
 	testVote.voterLogin();
@@ -55,14 +68,21 @@ int menu()
 	else {
 		return 0;
 	}
+	return 0;
 }
 
 
 int main()
 {
-    SetConsoleTitleA("Testchain");
+	SetConsoleTitleA("Testchain");
+	std::thread miningThread(mining, testVote);
+	std::thread voteingThread(voting);
+	miningThread.join();
+	voteingThread.join();
 	
-	menu();
+    
+	
+	//menu();
 	  
 
     return 0;
