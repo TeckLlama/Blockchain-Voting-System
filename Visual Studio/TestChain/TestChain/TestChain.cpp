@@ -9,16 +9,17 @@
 
 Vote testVote = Vote();
 
+
 //
 using namespace std::chrono_literals;
-void mining(Vote testVote)
+void mining()
 {//	manually mines three blocks 
  //	@TODO Blockchain need to continue / end automaticly 
  // @TODO Data need to be populated with votes users votes
 	
 	Blockchain bChain = Blockchain();
-	//std::this_thread::sleep_for(5000ms);
-	//bChain.AddBlock(Block(1, "Block 1 Data"));
+	std::this_thread::sleep_for(45000ms);
+	
 	
 	//std::cout << "TEST: unverifiedVotes Value Before Block  " << testVote.unverifiedVotes << std::endl;
 	bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
@@ -27,7 +28,7 @@ void mining(Vote testVote)
 	//std::cout << "TEST: unverifiedVotes Value After Reset  " << testVote.unverifiedVotes << std::endl;
 	std::this_thread::sleep_for(45000ms);
 	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	//testVote.unverifiedVotes = "";
+	testVote.unverifiedVotes = "";
 	std::this_thread::sleep_for(45000ms);
 	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
 	testVote.unverifiedVotes = "";
@@ -39,17 +40,28 @@ void mining(Vote testVote)
 	testVote.unverifiedVotes = "";
 	std::this_thread::sleep_for(45000ms);
 }
+
 void voting()
 {//	Manually starts voting
+
+
 	std::cout << "TEST: Vote Thread Initialized" << std::endl;
 	testVote.initializeVoteCandidates();
-	std::this_thread::sleep_for(10000ms);	
+	std::this_thread::sleep_for(5000ms);
 	testVote.voterLogin();
-	std::this_thread::sleep_for(10000ms);
+	std::this_thread::sleep_for(5000ms);
 	testVote.voterLogin();
-	std::this_thread::sleep_for(10000ms);
+	std::this_thread::sleep_for(5000ms);
 	testVote.voterLogin();
-	
+	std::this_thread::sleep_for(5000ms);
+	testVote.voterLogin();
+	std::this_thread::sleep_for(5000ms);
+	testVote.voterLogin();
+	std::this_thread::sleep_for(5000ms);
+	testVote.voterLogin();
+	std::this_thread::sleep_for(5000ms);
+	testVote.voterLogin();
+
 }
 
 int menu() 
@@ -62,7 +74,7 @@ int menu()
 	std::cin.ignore();
 	if (inputChar == 'm' || inputChar == 'M')
 	{
-		mining(testVote);
+		//mining(testVote);
 		menu();
 	}
 	else if (inputChar == 'v' || inputChar == 'V')
@@ -85,8 +97,9 @@ int menu()
 int main()
 {
 	SetConsoleTitleA("Testchain");
-	std::thread miningThread(mining, testVote);
+	
 	std::thread voteingThread(voting);
+	std::thread miningThread(mining);
 	miningThread.join();
 	voteingThread.join();
 	
