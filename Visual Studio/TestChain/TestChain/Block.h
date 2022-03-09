@@ -12,6 +12,7 @@ class Block{
 
 public:
     uint32_t _nIndex;
+    std::string _prevHash;
     uint32_t _nNonce;
     std::string sHash;
     std::string sPrevHash;

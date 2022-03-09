@@ -20,26 +20,36 @@ void mining(Vote testVote)
 	//std::this_thread::sleep_for(5000ms);
 	//bChain.AddBlock(Block(1, "Block 1 Data"));
 	
-	std::cout << "TEST: unverifiedVotes Value Before Block  " << testVote.unverifiedVotes << std::endl;
+	//std::cout << "TEST: unverifiedVotes Value Before Block  " << testVote.unverifiedVotes << std::endl;
 	bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	std::cout << "TEST: unverifiedVotes Value After Block  " << testVote.unverifiedVotes << std::endl;
+	//std::cout << "TEST: unverifiedVotes Value After Block  " << testVote.unverifiedVotes << std::endl;
 	testVote.unverifiedVotes = "";
-	std::cout << "TEST: unverifiedVotes Value After Reset  " << testVote.unverifiedVotes << std::endl;
+	//std::cout << "TEST: unverifiedVotes Value After Reset  " << testVote.unverifiedVotes << std::endl;
 	std::this_thread::sleep_for(45000ms);
 	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
+	//testVote.unverifiedVotes = "";
 	std::this_thread::sleep_for(45000ms);
 	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(45000ms);
+	bChain.AddBlock(Block(4, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(45000ms);
+	bChain.AddBlock(Block(5, testVote.unverifiedVotes), testVote.unverifiedVotes);
 	testVote.unverifiedVotes = "";
 	std::this_thread::sleep_for(45000ms);
 }
 void voting()
 {//	Manually starts voting
-	std::this_thread::sleep_for(10000ms);
-	std::cout << "TEST VOTING" << std::endl;
+	std::cout << "TEST: Vote Thread Initialized" << std::endl;
 	testVote.initializeVoteCandidates();
+	std::this_thread::sleep_for(10000ms);	
 	testVote.voterLogin();
-	//testVote.userInputVote(); NOW CALLED at end of testVotevoterLogin();
+	std::this_thread::sleep_for(10000ms);
+	testVote.voterLogin();
+	std::this_thread::sleep_for(10000ms);
+	testVote.voterLogin();
+	
 }
 
 int menu() 

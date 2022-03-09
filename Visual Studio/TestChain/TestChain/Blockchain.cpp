@@ -14,10 +14,9 @@ void Blockchain::GenerateGenesis(Block bGen,std::string votsta)
 {// Initializes Block 0 aka Genesis Block and sets mining difficulty
     std::cout << "Initializing Genesis Block: Block " << bGen._nIndex << "..." << std::endl;
     bGen.sPrevHash = "0000000000000000000000000000000000000000000000000000000000000000";
-    bGen._nNonce = 0;
+    bGen._nNonce = 1337;
     _testChain.emplace_back(Block(0, votsta));
-    _nDifficulty = 4;
-    //bGen.sHash = bGen.generateBlockHash();
+    _nDifficulty = 4;    
     bGen.saveBlock(0);
     // _nDifficulty Mining speed notes 
     // **MORE testing required**
