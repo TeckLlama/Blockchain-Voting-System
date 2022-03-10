@@ -40,7 +40,17 @@ void Vote::userInputVote()
 	cinYesOrNo("Your choice can NOT be changed after this are you sure? ");
 	if (yesOrNo == 'Y' || yesOrNo == 'y')
 	{
-		unverifiedVotes += userVoterID + "," + userInputChar + "\n";
+		voteTime = time(nullptr);
+		std::stringstream voteTimeSS;
+		voteTimeSS << voteTime;
+		voteTimeString = voteTimeSS.str();;
+		if (unverifiedVotes == "")
+		{
+			unverifiedVotes += userVoterID + "," + userInputChar + "," + voteTimeString;
+		}
+		else {
+			unverifiedVotes += "\n" + userVoterID + "," + userInputChar + "," + voteTimeString;
+		}		
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
 		//std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
 	}	

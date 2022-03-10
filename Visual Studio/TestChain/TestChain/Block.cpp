@@ -4,7 +4,7 @@ Block::Block(uint32_t nIndexIn, const std::string& sDataIn) : _nIndex(nIndexIn),
 {
     nIndexIn;                   // Incrementing Block ID 
     _prevHash;                  // SHA256 Hash of Previous Block
-    _tTime = time(nullptr);     // UNIX Timestamp of Solve Time
+    blockTime = time(nullptr);  // UNIX Timestamp of Solve Time
     _nNonce = 123456;           // Num Only Used Once: Value to find To solve Block
     sDataIn;                    // Block Data: 
                                 //       Genesis: Vote, Candidate & VoterPublicKeys 
@@ -26,7 +26,7 @@ void Block::MineBlock(uint32_t nDifficulty)
         _nNonce++;
         sHash = generateBlockHash();
     } while (sHash.substr(0, nDifficulty) != str);
-    std::cout << "Block " << _nIndex <<" mined at " << _tTime <<  std::endl;
+    std::cout << "Block " << _nIndex <<" mined at " << blockTime <<  std::endl;
     saveBlock(_nIndex);
     delete[] cstr;
 }
@@ -34,7 +34,7 @@ void Block::MineBlock(uint32_t nDifficulty)
 inline std::string Block::generateBlockHash() const
 {// Converts block contents into string and generates sha256 hash
     std::stringstream ss;
-    ss << _nIndex << sPrevHash << _tTime << _nNonce << _sData ;
+    ss << _nIndex << sPrevHash << blockTime << _nNonce << _sData ;
     return sha256(ss.str());
 }
 
@@ -49,7 +49,7 @@ void Block::saveBlock(uint32_t blockIndex)
        << "\n----- Previous Block Hash -----\n" // SHA256 Hash of Previous Block
        << sPrevHash 
        << "\n----- Block Solve Time -----\n"    // UNIX Timestamp of Solve Time
-       << _tTime 
+       << blockTime 
        << "\n----- Block Nonce -----\n"         // Num Only Used Once: Value to find To solve Block
        << _nNonce
        << "\n----- Block Data -----\n"          // Block Data: 

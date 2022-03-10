@@ -26,7 +26,7 @@ private:
     
    
     std::string _sData;
-    time_t _tTime;
+    time_t blockTime;
 
     
 

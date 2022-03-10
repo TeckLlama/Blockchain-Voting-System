@@ -2,6 +2,8 @@
 //#ifndef TESTCHAIN_VOTE_H
 //#define TESTCHAIN_VOTE_H
 #include <iostream>
+#include <time.h>
+#include <sstream>
 //#include <ctype.h>
 
 class Vote{
@@ -25,6 +27,8 @@ public:
 	char userInputChar;
 
 	std::string newVote;
+	time_t voteTime;
+	std::string voteTimeString;
 	std::string unverifiedVotes;
 	void userInputVote();
 
@@ -36,7 +40,7 @@ public:
 
 private:
 
-	time_t _tTime;
+	
 };
 
 //#endif //TESTCHAIN_VOTE_H

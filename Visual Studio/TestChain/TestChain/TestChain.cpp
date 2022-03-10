@@ -9,16 +9,13 @@
 
 Vote testVote = Vote();
 
-
-//
-using namespace std::chrono_literals;
 void mining()
 {//	manually mines three blocks 
  //	@TODO Blockchain need to continue / end automaticly 
  // @TODO Data need to be populated with votes users votes
 	std::cout << "TEST: Mining Thread Initialized" << std::endl;
 	Blockchain bChain = Blockchain();
-	std::this_thread::sleep_for(45000ms);
+	std::this_thread::sleep_for(std::chrono::seconds(45));
 	
 	for (int i = 1; i < 10; i++) 	{
 		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
@@ -69,36 +66,6 @@ void voting()
 
 }
 
-int menu() 
-{//	inputChar used to navigate menu only accepts M/V/E as input 
-	char inputChar;
-	do {
-		std::cout << "\nTest Mining, Test Voting or Exit[M/V/E] --> ";
-		std::cin >> inputChar;
-	} while (std::cin.fail() || inputChar != 'm' && inputChar != 'v' && inputChar != 'e' && inputChar != 'M' && inputChar != 'V' && inputChar != 'E');
-	std::cin.ignore();
-	if (inputChar == 'm' || inputChar == 'M')
-	{
-		//mining(testVote);
-		menu();
-	}
-	else if (inputChar == 'v' || inputChar == 'V')
-	{
-		voting();
-		menu();
-	}
-	else if (inputChar == 'e' || inputChar == 'E')
-	{// if user chooses exit out return 0 will close program 
-		
-		return 0;
-	}
-	else {
-		return 0;
-	}
-	return 0;
-}
-
-
 int main()
 {
 	SetConsoleTitleA("Testchain");
@@ -106,13 +73,9 @@ int main()
 	std::thread voteingThread(voting);
 	std::this_thread::sleep_for(std::chrono::seconds(1));
 	std::thread miningThread(mining);
-	miningThread.join();
 	voteingThread.join();
+	miningThread.join();
 	
-    
 	
-	//menu();
-	  
-
     return 0;
 }
