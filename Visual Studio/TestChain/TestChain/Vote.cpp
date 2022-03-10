@@ -7,8 +7,7 @@ void Vote::cinYesOrNo(std::string yNQuestion)
 		std::cout << yNQuestion << "[Y/N] --> ";
 		std::cin >> yesOrNo;
 	} while (std::cin.fail() || yesOrNo != 'y' && yesOrNo != 'n' && yesOrNo != 'Y' && yesOrNo != 'N');
-	std::cin.ignore();
-	
+	std::cin.ignore();	
 }
 void Vote::initializeVoteCandidates()
 {// Hard coded Vote and and Vote Candidates to be initilized in Genesis block
@@ -57,8 +56,7 @@ void Vote::userInputVote()
 	if (yesOrNo == 'N' || yesOrNo == 'n')
 	{
 		userInputVote();
-	}
-	
+	}	
 }
 
 void Vote::checkVoterStatus(std::string voterID)
@@ -70,8 +68,6 @@ void Vote::checkVoterStatus(std::string voterID)
 		std::cout << "ERROR: Input Voter ID Empty";
 		voterLogin();
 	}
-	
-
 }
 void Vote::voterLogin()
 {// Logs user in using VoterID 

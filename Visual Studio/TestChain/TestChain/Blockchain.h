@@ -10,12 +10,11 @@
 class Blockchain{
 public:
     Blockchain();
-
     void AddBlock(Block bNew, std::string votesPendingVerification);
     void GenerateGenesis(Block bGen,  std::string votsta);
 private:
-    uint32_t _nDifficulty;
-    std::vector<Block> _testChain;
+    uint32_t miningDifficulty;
+    std::vector<Block> voteChain;
     Block _GetLastBlock() const;
 };
 

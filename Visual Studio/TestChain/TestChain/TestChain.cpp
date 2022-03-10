@@ -16,7 +16,6 @@ void mining()
 	std::cout << "TEST: Mining Thread Initialized" << std::endl;
 	Blockchain bChain = Blockchain();
 	std::this_thread::sleep_for(std::chrono::seconds(45));
-	
 	for (int i = 1; i < 10; i++) 	{
 		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		testVote.unverifiedVotes = "";
@@ -63,7 +62,6 @@ void voting()
 	testVote.voterLogin();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	testVote.voterLogin();*/
-
 }
 
 int main()
