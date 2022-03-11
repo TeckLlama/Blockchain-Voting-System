@@ -6,8 +6,17 @@
 #include <thread>
 #include "Blockchain.h"
 #include "Vote.h"
+#include "sha256.h"
+
 
 Vote testVote = Vote();
+void generateTestHash()
+{// function to test accuracy of sha256
+	std::stringstream ss;
+	ss << "password";
+	std::cout << "TEST " + ss.str() + "\n";
+	std::cout << sha256(ss.str());
+}
 
 void mining()
 {//	manually mines three blocks 
@@ -36,8 +45,7 @@ void mining()
 	std::this_thread::sleep_for(std::chrono::seconds(45));
 	bChain.AddBlock(Block(5, testVote.unverifiedVotes), testVote.unverifiedVotes);
 	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));*/
-}
+	std::this_thread::sleep_for(std::chrono::seconds(45));*/}
 
 void voting()
 {//	Manually starts voting
@@ -68,11 +76,13 @@ int main()
 {
 	SetConsoleTitleA("Testchain");
 	
-	std::thread voteingThread(voting);
-	std::this_thread::sleep_for(std::chrono::seconds(1));
-	std::thread miningThread(mining);
-	voteingThread.join();
-	miningThread.join();
+	generateTestHash();
+
+	//std::thread voteingThread(voting);
+	//std::this_thread::sleep_for(std::chrono::seconds(1));
+	//std::thread miningThread(mining);
+	//voteingThread.join();
+	//miningThread.join();
 	
 	
     return 0;
