@@ -2,15 +2,13 @@
 ----- Block Index -----
 2
 ----- Previous Block Hash -----
-00003f3f02c36ae3c57ca09c67cd2c41835a6d7a00e0917c75425a078c4006c8
+000078398b419a0ec3a2bce70bfe9cdd241d109aac7a1832fe230987463e3449
 ----- Block Solve Time -----
-1646928248
+1647120075
 ----- Block Nonce -----
-294345
+189168
 ----- Block Data -----
-JJS,A,1646928220
-AFNJDV,B,1646928232
-FFF,A,1646928242
+
 ----- End of Block -----
 ----- Block Hash -----
-00007fd6bdeede6c6cbe2f1cc23d368f95c35c41ff4dcf65606847add495b953
+0000ef3605e63a476514c64fe27e9dc116e0bae0eb444a264c92b2b3dfa4786b

@@ -2,15 +2,13 @@
 ----- Block Index -----
 1
 ----- Previous Block Hash -----
-9309da38186c8e235a83e9e90037f9466c529af39e2b9c831a9052b15296d0bf
+90bf442eb6409eb9af777c442f29a2bb8ce10f8b346894b2520f6e308bddd406
 ----- Block Solve Time -----
-1646928202
+1647120550
 ----- Block Nonce -----
-159197
+164934
 ----- Block Data -----
-VOTEA,A,1646928169
-VOTEF,C,1646928185
-VOTE,A,1646928195
+
 ----- End of Block -----
 ----- Block Hash -----
-00003f3f02c36ae3c57ca09c67cd2c41835a6d7a00e0917c75425a078c4006c8
+00009f5c6ad18f1bb98ea787266b0129a09561bdd7bbf134723bbbe9bea86601

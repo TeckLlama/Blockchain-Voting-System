@@ -22,7 +22,7 @@ public:
     void MineBlock(uint32_t nDifficulty);
     void saveBlock(uint32_t blockIndex);
     std::string generateBlockHash() const;
-    std::string generateTestHash() const;
+
 private:
     
    

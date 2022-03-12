@@ -1,14 +1,20 @@
 #include "Vote.h"
-
+#include <conio.h>
 
 void Vote::cinYesOrNo(std::string yNQuestion)
 {// cinYesOrNo is used to get input of Y or N from user 
-	do {
+	do {// changed from cin to _getch to force input of one char 
+		yesOrNo[0] = (char)0;
 		std::cout << yNQuestion << "[Y/N] --> ";
-		std::cin >> yesOrNo;
-	} while (std::cin.fail() || yesOrNo != 'y' && yesOrNo != 'n' && yesOrNo != 'Y' && yesOrNo != 'N');
-	std::cin.ignore();	
+		yesOrNo[0] = _getch();
+		std::cout << yesOrNo[0] << std::endl;
+		//std::cin >> yesOrNo[0];
+	} while (/*std::cin.fail() ||*/ yesOrNo[0] != 'y' && yesOrNo[0] != 'n' && yesOrNo[0] != 'Y' && yesOrNo[0] != 'N');
+	std::cin.ignore();
+	
 }
+	
+
 void Vote::initializeVoteCandidates()
 {// Hard coded Vote and and Vote Candidates to be initilized in Genesis block
  // @TODO implement function for Admin to set voteText and votevoteCandidates before Genesis is created 
@@ -30,14 +36,17 @@ void Vote::userInputVote()
 	std::cout << "Candidate B: " << voteCandidateB << std::endl;
 	std::cout << "Candidate C: " << voteCandidateC << std::endl;
 	std::cout << "Candidate D: " << voteCandidateD << std::endl;
-	do {
+	do {// changed from cin to _getch to force input of one char 
+		userInputVoteChar[0] = (char)0;		
 		std::cout << "Please enter which Candidate you want to vote for [A/B/C/D] --> ";
-		std::cin >> userInputChar;
-	} while (std::cin.fail() || userInputChar != 'a' && userInputChar != 'b' && userInputChar != 'c' && userInputChar != 'd' && userInputChar != 'A' && userInputChar != 'B' && userInputChar != 'C' && userInputChar != 'D');
+		userInputVoteChar[0] = _getch();
+		std::cout << userInputVoteChar[0] << std::endl;
+		//std::cin >> userInputChar;
+	} while (/*std::cin.fail() ||*/ userInputVoteChar[0] != 'a' && userInputVoteChar[0] != 'b' && userInputVoteChar[0] != 'c' && userInputVoteChar[0] != 'd' && userInputVoteChar[0] != 'A' && userInputVoteChar[0] != 'B' && userInputVoteChar[0] != 'C' && userInputVoteChar[0] != 'D');
 	std::cin.ignore();
-	std::cout << "User input Char " << userInputChar << std::endl;
+	std::cout << "TEST: Accepted User input Char " << userInputVoteChar[0] << std::endl;
 	cinYesOrNo("Your choice can NOT be changed after this are you sure? ");
-	if (yesOrNo == 'Y' || yesOrNo == 'y')
+	if (yesOrNo[0] == 'Y' || yesOrNo[0] == 'y')
 	{
 		voteTime = time(nullptr);
 		std::stringstream voteTimeSS;
@@ -45,15 +54,15 @@ void Vote::userInputVote()
 		voteTimeString = voteTimeSS.str();;
 		if (unverifiedVotes == "")
 		{
-			unverifiedVotes += userVoterID + "," + userInputChar + "," + voteTimeString;
+			unverifiedVotes += userVoterID + "," + userInputVoteChar[0] + "," + voteTimeString;
 		}
 		else {
-			unverifiedVotes += "\n" + userVoterID + "," + userInputChar + "," + voteTimeString;
+			unverifiedVotes += "\n" + userVoterID + "," + userInputVoteChar[0] + "," + voteTimeString;
 		}		
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
 		//std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
 	}	
-	if (yesOrNo == 'N' || yesOrNo == 'n')
+	if (yesOrNo[0] == 'N' || yesOrNo[0] == 'n')
 	{
 		userInputVote();
 	}	

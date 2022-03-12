@@ -76,13 +76,13 @@ int main()
 {
 	SetConsoleTitleA("Testchain");
 	
-	generateTestHash();
+	//generateTestHash();
 
-	//std::thread voteingThread(voting);
-	//std::this_thread::sleep_for(std::chrono::seconds(1));
-	//std::thread miningThread(mining);
-	//voteingThread.join();
-	//miningThread.join();
+	std::thread voteingThread(voting);
+	std::this_thread::sleep_for(std::chrono::seconds(1));
+	std::thread miningThread(mining);
+	voteingThread.join();
+	miningThread.join();
 	
 	
     return 0;

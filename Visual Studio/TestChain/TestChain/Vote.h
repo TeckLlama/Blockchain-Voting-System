@@ -10,7 +10,7 @@ class Vote{
 
 public:
 	//std::string voteText;
-	char yesOrNo;
+	char yesOrNo[2];
 	void cinYesOrNo(std::string yNQuestion);
 
 
@@ -24,7 +24,7 @@ public:
 	std::string voterStatus;
 	void initializeValidVoterIDs();
 
-	char userInputChar;
+	char userInputVoteChar[2];
 
 	std::string newVote;
 	time_t voteTime;

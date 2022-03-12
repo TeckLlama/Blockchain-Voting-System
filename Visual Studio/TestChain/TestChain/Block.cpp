@@ -35,17 +35,11 @@ inline std::string Block::generateBlockHash() const
 {// Converts block contents into string and generates sha256 hash
     std::stringstream ss;
     ss << _nIndex << sPrevHash << blockTime << _nNonce << _sData ;
-    std::cout << "TEST: Data Hashed: " + ss.str() + "\n";
+    //std::cout << "TEST: Data Hashed: " + ss.str() + "\n";
     return sha256(ss.str());
 }
 
-inline std::string Block::generateTestHash() const
-{// Converts block contents into string and generates sha256 hash
-    std::stringstream ss;
-    ss << "password";
-    std::cout << "TEST " + ss.str() + "\n";
-    return sha256(ss.str());
-}
+
 
 
 void Block::saveBlock(uint32_t blockIndex)
