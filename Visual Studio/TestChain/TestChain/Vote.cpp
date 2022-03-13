@@ -31,13 +31,13 @@ void Vote::initializeValidVoterIDs()
 }
 void Vote::userInputVote()
 {// User Input of thier vote using A/B/C/D 
-	std::cout << voteText << std::endl;
-	std::cout << "Candidate A: " << voteCandidateA << std::endl;
-	std::cout << "Candidate B: " << voteCandidateB << std::endl;
-	std::cout << "Candidate C: " << voteCandidateC << std::endl;
-	std::cout << "Candidate D: " << voteCandidateD << std::endl;
 	do {// changed from cin to _getch to force input of one char 
-		userInputVoteChar[0] = (char)0;		
+		userInputVoteChar[0] = (char)0;
+		std::cout << voteText << std::endl;
+		std::cout << "Candidate A: " << voteCandidateA << std::endl;
+		std::cout << "Candidate B: " << voteCandidateB << std::endl;
+		std::cout << "Candidate C: " << voteCandidateC << std::endl;
+		std::cout << "Candidate D: " << voteCandidateD << std::endl;
 		std::cout << "Please enter which Candidate you want to vote for [A/B/C/D] --> ";
 		userInputVoteChar[0] = _getch();
 		std::cout << userInputVoteChar[0] << std::endl;
