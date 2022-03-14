@@ -5,7 +5,7 @@
 #include <time.h>
 #include <string>
 #include <sstream>
-
+#include <conio.h>
 //#include <ctype.h>
 
 class Vote{
@@ -25,6 +25,8 @@ public:
 
 	std::string voterInitialStatus;
 	void initializeValidVoterIDs();
+	std::string userPrivateKey;
+	void userSignVote();
 
 	char userInputVoteChar[2];
 

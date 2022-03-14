@@ -1,2 +1,9 @@
-﻿  Vote.cpp
+﻿  Block.cpp
+  Blockchain.cpp
+  sha256.cpp
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\sha256.cpp(124,62): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
+  SignMessage.cpp
+  TestChain.cpp
+  Vote.cpp
+  Generating Code...
   TestChain.vcxproj -> C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\x64\Debug\TestChain.exe

@@ -1,5 +1,5 @@
 #include "Vote.h"
-#include <conio.h>
+
 
 void Vote::cinYesOrNo(std::string yNQuestion)
 {// cinYesOrNo is used to get input of Y or N from user 
@@ -27,7 +27,13 @@ void Vote::initializeVoteCandidates()
 void Vote::initializeValidVoterIDs()
 {// Hard coded Valid Voter IDs to be initilized in Genesis block
  // @TODO implement function for Admin to set ValidVoterIDs/ Public Keys 
-	voterInitialStatus = "VoterID#1,1,1647255894\nVoterID#2,1,1647255895\nVoterID#3,1,1647255896\nVoterID#4,1,1647255897\nVoterID#5,1,1647255898\nVoterID#6,1,1647255899\nVoterID#7,1,1647256077\nVoterID#8,1,1647256078\nVoterID#9,1,1647256079\nVoterID#10,1,1647256080";
+	voterInitialStatus = "VoterID#1,1,1647255894\nVoterID#2,1,1647255895\nVoterID#3,1,1647255896\nVoterID#4,1,1647255897\nVoterID#5,1,1647255898\nVoterID#6,1,1647255899\nVoterID#7,1,1647256077\nVoterID#8,1,1647256078\nVoterID#9,1,1647256079\nVoterID#10,1,1647256080\n1EGMNkHM2HGH3ZmEo5A4iGYUkjDcopLgdF,1,1647264383";
+}
+void Vote::userSignVote()
+{
+	std::cout << "Please enter Private Key to sign Vote --> ";
+	std::cin >> userPrivateKey;
+
 }
 void Vote::userInputVote()
 {// User Input of thier vote using A/B/C/D 

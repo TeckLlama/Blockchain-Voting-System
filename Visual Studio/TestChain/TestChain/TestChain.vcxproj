@@ -142,6 +142,7 @@
     <ClCompile Include="Block.cpp" />
     <ClCompile Include="Blockchain.cpp" />
     <ClCompile Include="sha256.cpp" />
+    <ClCompile Include="SignMessage.cpp" />
     <ClCompile Include="TestChain.cpp" />
     <ClCompile Include="Vote.cpp" />
   </ItemGroup>
