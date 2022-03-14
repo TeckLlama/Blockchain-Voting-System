@@ -1,11 +1,10 @@
-﻿  Block.cpp
-  Blockchain.cpp
-  sha256.cpp
-C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\sha256.cpp(124,62): warning C4267: 'argument': conversion from 'size_t' to 'unsigned int', possible loss of data
-  TestChain.cpp
-  Vote.cpp
-  Generating code
-  Previous IPDB was built with incompatible compiler, fall back to full compilation.
-  All 404 functions were compiled because no usable IPDB/IOBJ from previous compilation was found.
-  Finished generating code
-  TestChain.vcxproj -> C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\x64\Release\TestChain.exe
+﻿  TestChain.cpp
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\Vote.h(10,11): error C2011: 'Vote': 'class' type redefinition
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\Vote.h(10): message : see declaration of 'Vote'
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\TestChain.cpp(12,6): error C2079: 'testVote' uses undefined class 'Vote'
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\TestChain.cpp(12,21): error C2027: use of undefined type 'Vote'
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\Vote.h(10): message : see declaration of 'Vote'
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\TestChain.cpp(31,52): error C2440: '<function-style-cast>': cannot convert from 'int' to 'Block'
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\TestChain.cpp(31,52): message : No constructor could take the source type, or constructor overload resolution was ambiguous
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\TestChain.cpp(31,79): error C2660: 'Blockchain::AddBlock': function does not take 1 arguments
+C:\Users\Llama\GitHub\Blockchain-Voting-System\Visual Studio\TestChain\TestChain\Blockchain.h(14,10): message : see declaration of 'Blockchain::AddBlock'

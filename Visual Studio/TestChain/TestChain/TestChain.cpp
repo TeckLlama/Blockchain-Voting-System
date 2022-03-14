@@ -24,11 +24,18 @@ void mining()
  // @TODO Data need to be populated with votes users votes
 	std::cout << "TEST: Mining Thread Initialized" << std::endl;
 	Blockchain bChain = Blockchain();
+
+	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
 	std::this_thread::sleep_for(std::chrono::seconds(45));
 	for (int i = 1; i < 10; i++) 	{
 		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
+		if (testVote.unverifiedVotes != "")
+		{
+			testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
+		}				
 		testVote.unverifiedVotes = "";
-		std::this_thread::sleep_for(std::chrono::seconds(45));
+		std::cout <<"VerifiedVotes\n" << testVote.verifiedVotes;
+		std::this_thread::sleep_for(std::chrono::seconds(30));
 	}
 	// Old Manual mining of 5 Blocks
 	/*bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
@@ -51,6 +58,7 @@ void voting()
 {//	Manually starts voting
 	std::cout << "TEST: Vote Thread Initialized" << std::endl;
 	testVote.initializeVoteCandidates();
+	testVote.initializeValidVoterIDs();
 	for (int i = 1; i < 50; i++) {
 		std::this_thread::sleep_for(std::chrono::seconds(5));
 		testVote.voterLogin();

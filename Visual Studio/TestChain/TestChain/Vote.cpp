@@ -10,8 +10,8 @@ void Vote::cinYesOrNo(std::string yNQuestion)
 		std::cout << yesOrNo[0] << std::endl;
 		//std::cin >> yesOrNo[0];
 	} while (/*std::cin.fail() ||*/ yesOrNo[0] != 'y' && yesOrNo[0] != 'n' && yesOrNo[0] != 'Y' && yesOrNo[0] != 'N');
-	std::cin.ignore();
 	
+	std::cout << "TEST: Accepted User input Char " << yesOrNo[0] << std::endl;
 }
 	
 
@@ -27,7 +27,7 @@ void Vote::initializeVoteCandidates()
 void Vote::initializeValidVoterIDs()
 {// Hard coded Valid Voter IDs to be initilized in Genesis block
  // @TODO implement function for Admin to set ValidVoterIDs/ Public Keys 
-	voterStatus = "VoterID#1,1\nVoterID#2,1\nVoterID#3,1\nVoterID#4,1\nVoterID#5,1\nVoterID#6,1\nVoterID#7,1\nVoterID#8,1\nVoterID#9,1\nVoterID#10,1";
+	voterInitialStatus = "VoterID#1,1,1647255894\nVoterID#2,1,1647255895\nVoterID#3,1,1647255896\nVoterID#4,1,1647255897\nVoterID#5,1,1647255898\nVoterID#6,1,1647255899\nVoterID#7,1,1647256077\nVoterID#8,1,1647256078\nVoterID#9,1,1647256079\nVoterID#10,1,1647256080";
 }
 void Vote::userInputVote()
 {// User Input of thier vote using A/B/C/D 
@@ -46,6 +46,7 @@ void Vote::userInputVote()
 	std::cin.ignore();
 	std::cout << "TEST: Accepted User input Char " << userInputVoteChar[0] << std::endl;
 	cinYesOrNo("Your choice can NOT be changed after this are you sure? ");
+
 	if (yesOrNo[0] == 'Y' || yesOrNo[0] == 'y')
 	{
 		voteTime = time(nullptr);
@@ -61,28 +62,70 @@ void Vote::userInputVote()
 		}		
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
 		//std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
+		voterLogin();
 	}	
 	if (yesOrNo[0] == 'N' || yesOrNo[0] == 'n')
 	{
 		userInputVote();
 	}	
+
 }
 
 void Vote::checkVoterStatus(std::string voterID)
-{// Skeleton function to verify voter status  
- //	**ONLY checks input is not empty**
- // @TODO Verify VoterID is valid
- // @TODO Verify VoterID Vote has not been used with allVoterStatus
-	if (voterID == "") {
-		std::cout << "ERROR: Input Voter ID Empty";
-		voterLogin();
+{// Checks if VoterID has used there vote in unverifiedVotes, verifiedVotes and checks if is in Initial Status
+ 
+	std::istringstream unverifiedVotesSS(unverifiedVotes);
+	std::string lineUnverifiedVotesSS;
+	while (std::getline(unverifiedVotesSS, lineUnverifiedVotesSS)) {
+		//std::cout << line << std::endl;
+		if (lineUnverifiedVotesSS.find(voterID) != std::string::npos)
+		{
+			//std::cout << line << std::endl;
+			std::cout << "Valid Voter ID: " << voterID << std::endl;
+			std::cout << "Error " << voterID << " has alread used Vote" << std::endl;
+			voterLogin();
+		}
 	}
+	std::istringstream verifiedVotesSS(verifiedVotes);
+	std::string lineVerifiedVotesSS;
+	while (std::getline(verifiedVotesSS, lineVerifiedVotesSS)) {
+		//std::cout << line << std::endl;
+		if (lineVerifiedVotesSS.find(voterID) != std::string::npos)
+		{
+			//std::cout << line << std::endl;
+			std::cout << "Valid Voter ID: " << voterID << std::endl;
+			std::cout << "Error " << voterID << " has alread used Vote" << std::endl;
+			voterLogin();
+		}
+	}
+	std::istringstream voterInitialStatusSS(voterInitialStatus);
+	std::string lineVoterInitialStatusSS;
+	while (std::getline(voterInitialStatusSS, lineVoterInitialStatusSS)) {
+		//std::cout << line << std::endl;
+		if (lineVoterInitialStatusSS.find(voterID) != std::string::npos)
+		{
+			//std::cout << line << std::endl;
+			std::cout << "Valid Voter ID: " << voterID << std::endl;
+			if (lineVoterInitialStatusSS.find(",1,") != std::string::npos) {
+				std::cout << "Voter Status: 1 " << std::endl;
+				userInputVote();
+			}
+			else {
+				std::cout << voterID <<" has alread used Vote" << std::endl;
+				voterLogin();
+			}
+		}		
+	}
+	std::cout << "Invalid Voter ID: " << voterID << std::endl;
+	voterLogin();
+
 }
 void Vote::voterLogin()
 {// Logs user in using VoterID 
  // @TODO Implement Public and Private Keys 
+	userVoterID.erase();
 	std::cout << "Please enter your Voter ID --> ";
 	std::cin >> userVoterID;
 	checkVoterStatus(userVoterID);
-	userInputVote();
+	//userInputVote();
 }

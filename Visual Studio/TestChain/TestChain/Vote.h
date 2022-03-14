@@ -3,7 +3,9 @@
 //#define TESTCHAIN_VOTE_H
 #include <iostream>
 #include <time.h>
+#include <string>
 #include <sstream>
+
 //#include <ctype.h>
 
 class Vote{
@@ -21,7 +23,7 @@ public:
 	std::string voteCandidateD;
 	void initializeVoteCandidates();
 
-	std::string voterStatus;
+	std::string voterInitialStatus;
 	void initializeValidVoterIDs();
 
 	char userInputVoteChar[2];
@@ -30,6 +32,8 @@ public:
 	time_t voteTime;
 	std::string voteTimeString;
 	std::string unverifiedVotes;
+	std::string verifiedVotes;
+
 	void userInputVote();
 
 	void checkVoterStatus(std::string voterID);

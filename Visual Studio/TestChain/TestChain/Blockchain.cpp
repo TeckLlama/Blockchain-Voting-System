@@ -3,8 +3,8 @@
 
 Blockchain::Blockchain()
 {
-    std::string VoterStatus = "VoterID#1,1\nVoterID#2,1\nVoterID#3,1\nVoterID#4,1\nVoterID#5,1\nVoterID#6,1\nVoterID#7,1\nVoterID#8,1\nVoterID#9,1\nVoterID#10,1";
-    GenerateGenesis(Block(0 , VoterStatus),VoterStatus);
+    //std::string VoterStatus = "VoterID#1,1\nVoterID#2,1\nVoterID#3,1\nVoterID#4,1\nVoterID#5,1\nVoterID#6,1\nVoterID#7,1\nVoterID#8,1\nVoterID#9,1\nVoterID#10,1";
+    //GenerateGenesis(Block(0 , VoterStatus),VoterStatus);
 }
 void Blockchain::GenerateGenesis(Block genBlock,std::string votsta) 
 {// Initializes Block 0 aka Genesis Block and sets mining difficulty
