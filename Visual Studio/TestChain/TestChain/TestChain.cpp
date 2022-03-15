@@ -26,8 +26,8 @@ void mining()
 	Blockchain bChain = Blockchain();
 
 	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	for (int i = 1; i < 10; i++) 	{
+	std::this_thread::sleep_for(std::chrono::seconds(10));
+	for (int i = 1; i < 1000010; i++) 	{
 		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
 		{
@@ -35,7 +35,7 @@ void mining()
 		}				
 		testVote.unverifiedVotes = "";
 		std::cout <<"VerifiedVotes\n" << testVote.verifiedVotes;
-		std::this_thread::sleep_for(std::chrono::seconds(30));
+		std::this_thread::sleep_for(std::chrono::seconds(5));
 	}
 	// Old Manual mining of 5 Blocks
 	/*bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
