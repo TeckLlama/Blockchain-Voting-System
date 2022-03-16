@@ -2,13 +2,13 @@
 ----- Block Index -----
 7
 ----- Previous Block Hash -----
-00004dc8658808a64ac127c3499776f27c3be5be8238b67c4053c135aea3c176
+000065e204f21377d405512ede1bbbebda04c20d06ce3d0befd843a8b4b446fb
 ----- Block Solve Time -----
-1647457283
+1647469430
 ----- Block Nonce -----
-262623
+279978
 ----- Block Data -----
-
+VoterID8,a,1647469421
 ----- End of Block -----
 ----- Block Hash -----
-0000305577cf3e770b574caa733374c42ab454cb7a36563e20385a4e27d3fe83
+00009faf41834038d7e64c44c7528a4d2b185969c55e528bd977322a87ef4e96

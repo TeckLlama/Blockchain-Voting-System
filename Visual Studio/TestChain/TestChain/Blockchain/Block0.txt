@@ -4,7 +4,7 @@
 ----- Previous Block Hash -----
 0000000000000000000000000000000000000000000000000000000000000000
 ----- Block Solve Time -----
-1647458835
+1647470296
 ----- Block Nonce -----
 1337
 ----- Block Data -----
@@ -21,4 +21,4 @@ VoterID0,1,1647256080
 1EGMNkHM2HGH3ZmEo5A4iGYUkjDcopLgdF,1,1647264383
 ----- End of Block -----
 ----- Block Hash -----
-0f2418184d677caaafc9495c7e9cfd16787be67b11bbf092ff82a5a6ddf63efe
+4ea8ab2d0566632132c182da1384bbc2a2502eed50ff95b6fcc7bdd27026c598

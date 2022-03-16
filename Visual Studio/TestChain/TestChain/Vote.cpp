@@ -10,7 +10,7 @@ void Vote::cinYesOrNo(std::string yNQuestion)
 		std::cout << yesOrNo[0] << std::endl;
 		//std::cin >> yesOrNo[0];
 	} while (/*std::cin.fail() ||*/ yesOrNo[0] != 'y' && yesOrNo[0] != 'n' && yesOrNo[0] != 'Y' && yesOrNo[0] != 'N');
-	std::cout << "Test: Accepted User input Char " << yesOrNo[0] << std::endl;
+	std::cout << "Test Vote.cpp: Accepted User input Char " << yesOrNo[0] << std::endl;
 	//std::cin.ignore();
 }
 	
@@ -50,7 +50,7 @@ void Vote::userInputVote()
 		//std::cin >> userInputChar;
 	} while (/*std::cin.fail() ||*/ userInputVoteChar[0] != 'a' && userInputVoteChar[0] != 'b' && userInputVoteChar[0] != 'c' && userInputVoteChar[0] != 'd' && userInputVoteChar[0] != 'A' && userInputVoteChar[0] != 'B' && userInputVoteChar[0] != 'C' && userInputVoteChar[0] != 'D');
 	//std::cin.ignore();
-	std::cout << "Test: Accepted User input Char " << userInputVoteChar[0] << std::endl;
+	std::cout << "Test Vote.cpp: Accepted User input Char " << userInputVoteChar[0] << std::endl;
 	cinYesOrNo("Your choice can NOT be changed after this are you sure? ");
 
 	if (yesOrNo[0] == 'Y' || yesOrNo[0] == 'y')
@@ -69,6 +69,7 @@ void Vote::userInputVote()
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
 		//std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
 		//voterLogin();
+		return;
 	}	
 	if (yesOrNo[0] == 'N' || yesOrNo[0] == 'n')
 	{
@@ -87,9 +88,9 @@ void Vote::checkVoterStatus(std::string voterID)
 		if (lineUnverifiedVotesSS.find(voterID) != std::string::npos)
 		{
 			//std::cout << line << std::endl;
-			std::cout << "Test: Voter ID found in unverifiedVotesSS: " << voterID << std::endl;
-			std::cout << "Error " << voterID << " has alread used Vote" << std::endl;
-			voterLogin();
+			std::cout << "Test Vote.cpp: Voter ID found in unverifiedVotesSS: " << voterID << std::endl;
+			std::cout << "Error: " << voterID << " has already used Vote" << std::endl;
+			return;
 		}
 	}
 	std::istringstream verifiedVotesSS(verifiedVotes);
@@ -98,9 +99,9 @@ void Vote::checkVoterStatus(std::string voterID)
 		//std::cout << line << std::endl;
 		if (lineVerifiedVotesSS.find(voterID) != std::string::npos)
 		{
-			std::cout << "Test: Voter ID found in verifiedVotesSS: " << voterID << std::endl;
-			std::cout << "Error: " << voterID << " has alread used Vote" << std::endl;
-			voterLogin();
+			std::cout << "Test Vote.cpp: Voter ID found in verifiedVotesSS: " << voterID << std::endl;
+			std::cout << "Error: " << voterID << " has already used Vote" << std::endl;
+			return;
 		}
 	}
 	std::istringstream voterInitialStatusSS(voterInitialStatus);
@@ -109,18 +110,21 @@ void Vote::checkVoterStatus(std::string voterID)
 		//std::cout << line << std::endl;
 		if (lineVoterInitialStatusSS.find(voterID) != std::string::npos)
 		{
-			//std::cout << line << std::endl;
-			std::cout << "Test: Voter ID found in voterInitialStatusSS: " << voterID << std::endl;
+			std::cout << "Test Vote.cpp: Voter ID found in voterInitialStatusSS: " << voterID << std::endl;
+			//std::cout << "Test Vote.cpp: Found in line: " << lineVoterInitialStatusSS << std::endl;
 			if (lineVoterInitialStatusSS.find(",1,") != std::string::npos) {
 				std::cout << "Voter Status: 1" << std::endl;
-				
-
+				userInputVote();
 			}
-			else {
-				std::cout << voterID <<" has alread used Vote" << std::endl;
-				voterLogin();
+			else{
+				std::cout << "Error: "<< voterID << " has alread used Vote" << std::endl;
+				return;
 			}
-		}		
+		}
+		//else{
+			//std::cout << "Error: " << voterID << " is not alocated Vote" << std::endl;
+		//	return;
+		//}
 	}
 	
 
@@ -130,11 +134,12 @@ void Vote::checkVoteID(std::string voteID)
 	//	 regex ^[accepts alphanumeric char]{min size 8, max size 8}$
 	std::regex regexVoteID("^[a-zA-Z0-9]{8,8}$");
 	if (std::regex_search(voteID, regexVoteID)) {			
-		std::cout <<"Test: Vote ID Charaters & Length accepted" << std::endl;	
-		}
+		std::cout <<"Test Vote.cpp: Vote ID Charaters & Length accepted" << std::endl;	
+		checkVoterStatus(voteID);
+	}
 	else {
 		std::cout << "Error: Vote ID not accepted" << std::endl;
-		voterLogin();
+		return;
 	}
 }
 
@@ -143,11 +148,14 @@ void Vote::voterLogin()
 {// Logs user in using VoterID 
  // @TODO Implement Public and Private Keys 
 	//userVoterID.erase();
-	
+	userVoterID = "";
 	std::cout << "Please enter your Voter ID --> ";
-	std::cin >> userVoterID;
-	std::cin.ignore();
+	//std::cin >> userVoterID;
+	std::getline(std::cin, userVoterID);
+	std::cin.clear();
+	//std::cin.ignore(1);	
 	checkVoteID(userVoterID);
-	checkVoterStatus(userVoterID);
-	userInputVote();
+	//checkVoterStatus(userVoterID);
+	//userInputVote();
+
 }
