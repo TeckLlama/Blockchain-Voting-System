@@ -26,7 +26,7 @@ void Block::MineBlock(uint32_t nDifficulty)
         _nNonce++;
         sHash = generateBlockHash();
     } while (sHash.substr(0, nDifficulty) != str);
-    std::cout << "Block " << _nIndex <<" mined at " << blockTime <<  std::endl;
+    std::cout << "Test: Block " << _nIndex <<" mined at " << blockTime <<  std::endl;
     saveBlock(_nIndex);
     delete[] cstr;
 }
@@ -45,7 +45,7 @@ inline std::string Block::generateBlockHash() const
 void Block::saveBlock(uint32_t blockIndex)
 {// saveBlock saves blocks after they are solved in folder /Blockchain/ 
  // Function unable to create folder but executes corect if folder exists
-    std::cout << "TEST: Starting saveBlock function";
+    std::cout << "Test: Starting saveBlock function" << std::endl;
     std::stringstream ss;
     ss << "----- Start of Block -----"
        << "\n----- Block Index -----\n"         // Incrementing Block ID 
@@ -66,5 +66,5 @@ void Block::saveBlock(uint32_t blockIndex)
     std::ofstream fileToSave("./Blockchain/Block" + std::to_string(blockIndex) + ".txt");
     fileToSave << blockContent;
     fileToSave.close();    
-    std::cout << "\n" << "Block " << blockIndex << " has been saved\n";
+    std::cout << "Test: Block " << blockIndex << " has been saved" << std::endl;
 }

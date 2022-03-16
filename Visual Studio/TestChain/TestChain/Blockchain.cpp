@@ -8,7 +8,7 @@ Blockchain::Blockchain()
 }
 void Blockchain::GenerateGenesis(Block genBlock,std::string votsta) 
 {// Initializes Block 0 aka Genesis Block and sets mining difficulty
-    std::cout << "Initializing Genesis Block: Block " << genBlock._nIndex << "..." << std::endl;
+    std::cout << "Test: Initializing Genesis Block: Block " << genBlock._nIndex << "..." << std::endl;
     genBlock.sPrevHash = "0000000000000000000000000000000000000000000000000000000000000000";
     genBlock._nNonce = 1337;
     voteChain.emplace_back(Block(0, votsta));
@@ -25,7 +25,7 @@ void Blockchain::GenerateGenesis(Block genBlock,std::string votsta)
 
 void Blockchain::AddBlock(Block newBlock, std::string votesPendingVerification)
 {// Gets previous blocks hash, starts mining block then adds to end of the blockchain
-    std::cout << "Mining block "<< newBlock._nIndex <<"..." << std::endl;
+    std::cout << "Test: Mining block "<< newBlock._nIndex <<"..." << std::endl;
     newBlock.sPrevHash = _GetLastBlock().sHash;
     newBlock.MineBlock(miningDifficulty);
     voteChain.push_back(newBlock);

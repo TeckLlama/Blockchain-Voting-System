@@ -10,6 +10,10 @@
 
 
 Vote testVote = Vote();
+bool stopVotingThread = false;
+bool stopMiningThread = false;
+
+
 void generateTestHash()
 {// function to test accuracy of sha256
 	std::stringstream ss;
@@ -18,51 +22,26 @@ void generateTestHash()
 	std::cout << sha256(ss.str());
 }
 
-void mining()
-{//	manually mines three blocks 
- //	@TODO Blockchain need to continue / end automaticly 
- // @TODO Data need to be populated with votes users votes
-	std::cout << "TEST: Mining Thread Initialized" << std::endl;
-	Blockchain bChain = Blockchain();
 
-	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
-	std::this_thread::sleep_for(std::chrono::seconds(10));
-	for (int i = 1; i < 1000010; i++) 	{
-		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
-		if (testVote.unverifiedVotes != "")
-		{
-			testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
-		}				
-		testVote.unverifiedVotes = "";
-		std::cout <<"VerifiedVotes\n" << testVote.verifiedVotes;
-		std::this_thread::sleep_for(std::chrono::seconds(5));
-	}
-	// Old Manual mining of 5 Blocks
-	/*bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(4, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(5, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));*/}
 
 void voting()
 {//	Manually starts voting
-	std::cout << "TEST: Vote Thread Initialized" << std::endl;
+	std::cout << "Test: Vote Thread Initialized" << std::endl;
 	testVote.initializeVoteCandidates();
 	testVote.initializeValidVoterIDs();
-	for (int i = 1; i < 50; i++) {
+	
+	for (int i = 1; i < 15; i++) {
+		if (stopVotingThread == true) {
+			stopMiningThread = true;
+			std::cout << "Test: Ending Vote Thread\nTest: stopMiningThread set to true" << std::endl; 
+			return;
+		}
 		std::this_thread::sleep_for(std::chrono::seconds(5));
 		testVote.voterLogin();
 	}
+	
+	/*stopMiningThread = true;
+	std::cout << "Test: stopMiningThread set to true" << std::endl;*/
 	// Old Manual Voting for 5 users
 	/*std::this_thread::sleep_for(std::chrono::seconds(5));
 	testVote.voterLogin();
@@ -78,6 +57,73 @@ void voting()
 	testVote.voterLogin();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	testVote.voterLogin();*/
+}
+void mining()
+{//	manually mines three blocks 
+ //	@TODO Blockchain need to continue / end automaticly 
+ // @TODO Data need to be populated with votes users votes
+	std::cout << "Test: Mining Thread Initialized" << std::endl;
+	
+	Blockchain bChain = Blockchain();
+	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
+	std::this_thread::sleep_for(std::chrono::seconds(5));
+	int blockIndex;
+	for (int i = 1; i < 10; i++) {
+		blockIndex = i;
+		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
+		if (testVote.unverifiedVotes != "")
+		{
+			testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
+		}
+		testVote.unverifiedVotes = "";
+		std::cout << "Test: VerifiedVotes\n" << testVote.verifiedVotes;
+		std::this_thread::sleep_for(std::chrono::seconds(15));
+		/*if (stopMiningThread == true) {
+			bChain.AddBlock(Block(i+1, testVote.unverifiedVotes), testVote.unverifiedVotes);
+			if (testVote.unverifiedVotes != "")
+			{
+				testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
+			}
+			testVote.unverifiedVotes = "";
+			std::cout << "Test: VerifiedVotes\n" << testVote.verifiedVotes;
+			return;
+		}*/
+	}
+	stopVotingThread = true;
+	std::cout << "Test: stopVotingThread set to true" << std::endl;
+	while (stopMiningThread== false) {
+		std::this_thread::sleep_for(std::chrono::seconds(15));
+		if (stopMiningThread == true) {
+			blockIndex = blockIndex + 1;
+			bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
+			if (testVote.unverifiedVotes != "")
+			{
+				testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
+			}
+			testVote.unverifiedVotes = "";
+			std::cout << "Test: VerifiedVotes\n" << testVote.verifiedVotes;
+			return;
+		}
+	}
+	
+	
+	//exit;
+	// Old Manual mining of 5 Blocks
+	/*bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(std::chrono::seconds(45));
+	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(std::chrono::seconds(45));
+	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(std::chrono::seconds(45));
+	bChain.AddBlock(Block(4, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(std::chrono::seconds(45));
+	bChain.AddBlock(Block(5, testVote.unverifiedVotes), testVote.unverifiedVotes);
+	testVote.unverifiedVotes = "";
+	std::this_thread::sleep_for(std::chrono::seconds(45));*/
 }
 
 int main()

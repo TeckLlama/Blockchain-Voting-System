@@ -6,6 +6,7 @@
 #include <string>
 #include <sstream>
 #include <conio.h>
+#include <regex>
 //#include <ctype.h>
 
 class Vote{
@@ -37,10 +38,11 @@ public:
 	std::string verifiedVotes;
 
 	void userInputVote();
-
 	void checkVoterStatus(std::string voterID);
 
 	std::string userVoterID;
+	void checkVoteID(std::string voteID);
+
 	void voterLogin();
 
 
