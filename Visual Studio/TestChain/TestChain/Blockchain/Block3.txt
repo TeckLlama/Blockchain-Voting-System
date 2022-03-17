@@ -2,14 +2,13 @@
 ----- Block Index -----
 3
 ----- Previous Block Hash -----
-00003d47a9746d9f7fc100c41859027ee50248d33a6422f4d9eea9766a88dfc4
+00007a932eb1fb2dcd172f577c85ba544c89b0f52b5130836dc84649ed51b956
 ----- Block Solve Time -----
-1647478253
+1647522127
 ----- Block Nonce -----
-231363
+161334
 ----- Block Data -----
-VoterID4,A,1647478241
-VoterID6,A,1647478252
+1JpebqY87211yCe7fCmguW78QyS2sfCxAx,A,1647522127
 ----- End of Block -----
 ----- Block Hash -----
-0000c7dc7d96ad88fad0a6db10eb0b81d66b3a581ac50031d4d24678ae6074d7
+0000c50efb68ca2fbb0eb12a57fdca2c9b9e18642e10da4ff6066acfc7e8501d

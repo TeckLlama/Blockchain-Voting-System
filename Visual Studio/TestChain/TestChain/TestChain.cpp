@@ -30,9 +30,11 @@ void generateTestHash()
 
 void voting()
 {//	Manually starts voting
-	std::cout << "Test Main.cpp: Vote Thread Initialized" << std::endl;
+	std::cout << "Test Main.cpp: Vote Thread Initialized" << std::endl;	
 	testVote.initializeVoteCandidates();
+	std::unique_lock<std::mutex> ulVM(vote_mutex);
 	testVote.initializeValidVoterIDs();
+	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 	while (!stopVotingThread) {
 		//for (int i = 1; i < 15; i++) {
@@ -83,10 +85,10 @@ void mining()
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
-	for (int i = 1; i < 5; i++) {
-		blockIndex = i;
+	for (blockIndex = 1; blockIndex < 5; blockIndex++) {
+		
 		std::unique_lock<std::mutex> ulVM(vote_mutex);
-		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
+		bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
 		{
 			testVote.verifiedVotes += testVote.unverifiedVotes + "\n";

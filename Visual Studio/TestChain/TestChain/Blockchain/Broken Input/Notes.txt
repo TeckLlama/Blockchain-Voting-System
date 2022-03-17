@@ -1,0 +1,2 @@
+UserID was in list of valid IDs twice 
+	Resulted in user beingasked to vote twice

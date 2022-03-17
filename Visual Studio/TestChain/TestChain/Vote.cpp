@@ -27,8 +27,12 @@ void Vote::initializeVoteCandidates()
 }
 void Vote::initializeValidVoterIDs()
 {// Hard coded Valid Voter IDs to be initilized in Genesis block
- // @TODO implement function for Admin to set ValidVoterIDs/ Public Keys 
-	voterInitialStatus = "VoterID1,1,1647255894\nVoterID2,1,1647255895\nVoterID3,1,1647255896\nVoterID4,1,1647255897\nVoterID5,1,1647255898\nVoterID6,1,1647255899\nVoterID7,1,1647256077\nVoterID8,1,1647256078\nVoterID9,1,1647256079\nVoterID0,1,1647256080\n1EGMNkHM2HGH3ZmEo5A4iGYUkjDcopLgdF,1,1647264383";
+ // @TODO implement function for Admin to set ValidVoterIDs
+	//voterInitialStatus = "VoterID1,1,1647255894\nVoterID2,1,1647255895\nVoterID3,1,1647255896\n",
+    ///*Test VoteIDs*/	   "VoterID4,1,1647255897\nVoterID5,1,1647255898\nVoterID6,1,1647255899\n",
+	///*Regex Set {8,8}*/  "VoterID7,1,1647256077\nVoterID8,1,1647256078\nVoterID9,1,1647256079\n",
+	//					   "VoterID0,1,1647256080\n";
+	voterInitialStatus = "1Llama000000000000000000000000test,1,1647480169\n16LpwiWshLWJHVnb8NWoK6misC5P2JiB5q,1,1647480171\n1AJGsPnGt16LpwiWshLWJHVnb8NWoK6mis,1,1647480172\n1bbfPre7yC5P2JiB5qAfkHmQbmQgWyC5P2,1,1647480173\n1AJGsPnGtbbfPre7yuCkYJL9jf7bB4Rk4k,1,1647480176\n1uCkYJL9jfXdgQVMtkxyqbB4Rk8i47F652,1,1647480177\n17bB4Rk4kkdfgd55ryehMtkxe7yu9i8JGs,1,1647480178\n1JpebqY87211yCe7fCmguW78QyS2sfCxAx,1,1647480179\n194cQkc1AEWNJaG5Wk5hWSR9cda9MNYWap,1,1647480180\n12RgP5biNxaYCDZTocFiMP7NbVQGCvNLCl,1,1647480181\n13vWaz8skbMaZ8odJiGJj7P9hR3Y4tgiWE,1,1647480182\n1GvyJihRFc33SMDuNUPEUg1fAkRnMdGC3C,1,1647480183\n1JX2y6wxDxk92RqTRoxQt13J5B4Xxu9G1Q,1,1647480184\n18JkdYW89N6eN9D7oSiP967zAwRVh7sQzm,1,1647480185\n16sVdhEzuJKPWsZvs59cUNNur5tTcVWFy1,1,1647480186\n1PVuG4XfBBCfKvhuHhE2iDVsWxSgH96NTw,1,1647480187\n19UKiuqHx14ockwBkF36yXCtShFRzmjGNu,1,1647480188\n19J6QeyMknr29oucUVFuENHQqctAUCTyGy,1,1647480189\n1HtY5kQvwjj3id9RYLv5ZUZXTykrsrRHa3,1,1647480190\n14Xf7icn7edVrMYkFUafdC4FqZtxmihe42,1,1647480191\n1J6oz5igbxgHJMHvsFVUxDcgsYYvV4JkXL,1,1647480192\n17rQP2FYPkoGFM2nozDb71F6oXmMaRxQ6r,1,1647480193\n1GLzFgspdRXQNPsiky7mnvz15NFb61v68i,1,1647480194\n1CBNxmTsNFFrPmrLLx6Y6ZsuyStFjEe18i,1,1647480195\n12ydSxvJeoX5crTxG6nfVwMYPgAddHFSRx,1,1647480196\n1K9qs1SEWHnBxuPgX361MNuniEMc8xvsT6,1,1647480197\n1KQ6rbMqXNDuSLG6iKQsD9Gvx1zin7JtTX,1,1647480198\n194kXsWtgf1nTdw6QHjfuokBgw62rshb88,1,1647480199\n19pw8BfUDAA8YU9esqVUp5zZkavEQ2UbSK,1,1647480200\n19GtAipeRfde3UdcffktQjQuq4w35gfw1L,1,1647480201\n3HVKTFikjRB1WmWmwoP3u4bYuCtZYeCwzt,1,1647480202\n38duLT9aqwX9dHmgRdRuxqbw6aX8mZd6ip,1,1647480203\n32Aexusex26MP4fX3WH79zfcq3qa5RGrzB,1,1647480204\n39JQtXDh7zJJxukAgsaCc39u7fUosAEXQD,1,1647480205\n32PaFPRWtjSHGBhHWXmkn3QGz7PyvGjQxm,1,1647480206\n3BGw1wGvTCjefG19EDLrY5kVL11kAZCkv3,1,1647480207\n337ugPqo1GQhzwvuai4JPcfdBo7bwrb6h3,1,1647480208\n33wPjmGR3Kb8cmhqM9SoszWToLLaHvJ7Mr,1,1647480209\n37sJgaj1SvWAhNjPuPdi7TR87ku4koaGsS,1,1647480210\n3CQTkJvjddVaVH8sNdK9CC4E5UdjFXqfMa,1,1647480211\n36L5sSXgkt1LmW33L1YdFCXoeMPYPdPR14,1,1647480212\n3DNP2iY4t7Bk5mL6ZLAXFgbQhz3BBV2aj5,1,1647480213\n33b3BLdgVepftEvFsh3uVQotr7KjW661UM,1,1647480214\n33hdf1RoreaJb9Ba44nuzNYz3TADv9ALoF,1,1647480215\n33vg4xg5h6m1FPgimj1qiM8uV9TdEHBrPW,1,1647480216\n3Ef19woDDEUt7NzwHzZrderB2VLmXrxjUo,1,1647480217\n3Ep9xwB6KPyf2693VNA8vzSeem2EruqabL,1,1647480218\n3P1Pw9shNJaFdZecUwTBNpxkHDtezewZfv,1,1647480219\n377SGUY2ePPX83eqwGV4qFAfkHmQbmQgWy,1,1647480220\n38i47F6Gr57ZLyTQTUh3r3yBLiu7QQgzxq,1,1647480221\n322v9i82ietiYXdgQVMtkxyq98WSGEDgwK,1,1647480222";
 }
 void Vote::userSignVote()
 {
@@ -82,7 +86,7 @@ void Vote::userInputVote()
 
 void Vote::checkVoterStatus(std::string voterID)
 {// Checks if VoterID has used there vote in unverifiedVotes, verifiedVotes and checks if is in Initial Status
- 
+	voterStatus = false;
 	std::istringstream unverifiedVotesSS(unverifiedVotes);
 	std::string lineUnverifiedVotesSS;
 	while (std::getline(unverifiedVotesSS, lineUnverifiedVotesSS)) {
@@ -115,26 +119,33 @@ void Vote::checkVoterStatus(std::string voterID)
 			std::cout << "Test Vote.cpp: Voter ID found in voterInitialStatusSS: " << voterID << std::endl;
 			//std::cout << "Test Vote.cpp: Found in line: " << lineVoterInitialStatusSS << std::endl;
 			if (lineVoterInitialStatusSS.find(",1,") != std::string::npos) {
+
 				std::cout << "Voter Status: 1" << std::endl;
+				voterStatus = true;
 				userInputVote();
 			}
 			else{
-				std::cout << "Error: "<< voterID << " has alread used Vote" << std::endl;
+				std::cout << "Error: "<< voterID << " has already used Vote" << std::endl;
 				return;
 			}
-		}
-		//else{
-			//std::cout << "Error: " << voterID << " is not alocated Vote" << std::endl;
-		//	return;
-		//}
+		}		
 	}
+	if (!voterStatus) {
+		std::cout << "Error: " << voterID << " is not assigned a Vote" << std::endl;
+		//voterStatus = false;
+		return;
+	}
+	
+
+	
+	
 	
 
 }
 void Vote::checkVoteID(std::string voteID)
 {// uses regex to validate input voteID
-	//	 regex ^[accepts alphanumeric char]{min size 8, max size 8}$
-	std::regex regexVoteID("^[a-zA-Z0-9]{8,8}$");
+	//	 regex ^[accepts alphanumeric char]{min size 34, max size 34}$
+	std::regex regexVoteID("^[a-zA-Z0-9]{34,34}$");// in testing {8,8}
 	if (std::regex_search(voteID, regexVoteID)) {			
 		std::cout <<"Test Vote.cpp: Vote ID Charaters & Length accepted" << std::endl;	
 		checkVoterStatus(voteID);

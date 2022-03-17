@@ -39,6 +39,8 @@ public:
 	std::string verifiedVotes;
 
 	void userInputVote();
+
+	bool voterStatus;
 	void checkVoterStatus(std::string voterID);
 
 	std::string userVoterID;
