@@ -13,6 +13,7 @@ Vote testVote = Vote();
 
 bool stopVotingThread = false;
 bool stopMiningThread = false;
+char menuChar;
 
 
 void generateTestHash()
@@ -140,12 +141,39 @@ int main()
 	
 	//generateTestHash();
 
-	std::thread voteingThread(voting);
-	std::this_thread::sleep_for(std::chrono::seconds(1));
-	std::thread miningThread(mining);
-	voteingThread.join();
-	miningThread.join();
-	
-	
+	do {// changed from cin to _getch to force input of one char 
+		menuChar = (char)0;		
+		std::cout << "[A] Start Voting [A]"  << std::endl;
+		std::cout << "[B] Empty        [B]" << std::endl;
+		std::cout << "[C] Exit         [C]" <<  std::endl;
+      //std::cout << "[D] Exit         [D]" << std::endl;
+		
+		std::cout << "Press A to Initilize Vote or [A/B/C] --> ";
+		menuChar = _getch();
+		std::cout << menuChar << std::endl;
+		menuChar = toupper(menuChar);
+		//std::cin >> userInputChar;
+	} while (/*std::cin.fail() ||*/ menuChar != 'A' && menuChar != 'B' && menuChar != 'C' /* && menuChar != 'D'*/);
+	std::cout << "Test Vote.cpp: Accepted User input Char " << menuChar << std::endl;
+	if (menuChar == 'A') {
+		std::thread voteingThread(voting);
+		std::this_thread::sleep_for(std::chrono::seconds(1));
+		std::thread miningThread(mining);
+		voteingThread.join();
+		miningThread.join();
+		if (stopVotingThread && stopMiningThread == true) {
+			testVote.totalVerifiedVotes();
+		}
+	}
+	if (menuChar == 'B') {
+		return 2;
+	}
+	if (menuChar == 'C') {
+		return 2;
+	}
+
+
+
+
     return 0;
 }

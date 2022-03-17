@@ -7,6 +7,7 @@
 #include <sstream>
 #include <conio.h>
 #include <regex>
+#include <cctype>
 //#include <ctype.h>
 
 class Vote{
@@ -45,6 +46,13 @@ public:
 
 	void voterLogin();
 
+
+	int totalVotesA = 0;
+	int totalVotesB	= 0;
+	int totalVotesC = 0;
+	int totalVotesD = 0;
+	int totalVotes = 0;
+	void totalVerifiedVotes();
 
 private:
 

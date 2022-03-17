@@ -8,8 +8,9 @@ void Vote::cinYesOrNo(std::string yNQuestion)
 		std::cout << yNQuestion << "[Y/N] --> ";
 		yesOrNo[0] = _getch();
 		std::cout << yesOrNo[0] << std::endl;
+		yesOrNo[0] = toupper(yesOrNo[0]);
 		//std::cin >> yesOrNo[0];
-	} while (/*std::cin.fail() ||*/ yesOrNo[0] != 'y' && yesOrNo[0] != 'n' && yesOrNo[0] != 'Y' && yesOrNo[0] != 'N');
+	} while (/*std::cin.fail() ||*/yesOrNo[0] != 'Y' && yesOrNo[0] != 'N');
 	std::cout << "Test Vote.cpp: Accepted User input Char " << yesOrNo[0] << std::endl;
 	//std::cin.ignore();
 }
@@ -47,8 +48,9 @@ void Vote::userInputVote()
 		std::cout << "Please enter which Candidate you want to vote for [A/B/C/D] --> ";
 		userInputVoteChar[0] = _getch();
 		std::cout << userInputVoteChar[0] << std::endl;
+		userInputVoteChar[0] = toupper(userInputVoteChar[0]);
 		//std::cin >> userInputChar;
-	} while (/*std::cin.fail() ||*/ userInputVoteChar[0] != 'a' && userInputVoteChar[0] != 'b' && userInputVoteChar[0] != 'c' && userInputVoteChar[0] != 'd' && userInputVoteChar[0] != 'A' && userInputVoteChar[0] != 'B' && userInputVoteChar[0] != 'C' && userInputVoteChar[0] != 'D');
+	} while (/*std::cin.fail() ||*/ userInputVoteChar[0] != 'A' && userInputVoteChar[0] != 'B' && userInputVoteChar[0] != 'C' && userInputVoteChar[0] != 'D');
 	//std::cin.ignore();
 	std::cout << "Test Vote.cpp: Accepted User input Char " << userInputVoteChar[0] << std::endl;
 	cinYesOrNo("Your choice can NOT be changed after this are you sure? ");
@@ -157,5 +159,38 @@ void Vote::voterLogin()
 	checkVoteID(userVoterID);
 	//checkVoterStatus(userVoterID);
 	//userInputVote();
+
+}
+
+void Vote::totalVerifiedVotes()
+{
+	std::cout << "Counting Verified Votes..." << std::endl;
+	std::istringstream verifiedVotesSS(verifiedVotes);
+	std::string lineVerifiedVotesSS;
+	while (std::getline(verifiedVotesSS, lineVerifiedVotesSS)) {
+		//std::cout << line << std::endl;
+		if (lineVerifiedVotesSS.find(",A,") != std::string::npos) {
+			totalVotesA++;
+			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+		}
+		else if (lineVerifiedVotesSS.find(",B,") != std::string::npos) {
+			totalVotesB++;
+			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+		}
+		else if (lineVerifiedVotesSS.find(",C,") != std::string::npos) {
+			totalVotesC++;
+			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+		}
+		else if (lineVerifiedVotesSS.find(",D,") != std::string::npos) {
+			totalVotesD++;
+			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+		}
+	}
+	totalVotes = totalVotesA + totalVotesB + totalVotesC + totalVotesD;
+	std::cout << "Count Complete Total Votes: " << totalVotes << std::endl;
+	std::cout << "Total Votes for [A]: " << totalVotesA << "\t" << voteCandidateA << std::endl;
+	std::cout << "Total Votes for [B]: " << totalVotesB << "\t" << voteCandidateB << std::endl;
+	std::cout << "Total Votes for [C]: " << totalVotesC << "\t" << voteCandidateC << std::endl;
+	std::cout << "Total Votes for [D]: " << totalVotesD << "\t" << voteCandidateD << std::endl;
 
 }
