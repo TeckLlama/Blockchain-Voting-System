@@ -4,10 +4,12 @@
 #include <Windows.h>
 #include <chrono>
 #include <thread>
+#include <mutex>
 #include "Blockchain.h"
 #include "Vote.h"
 #include "sha256.h"
 
+std::mutex vote_mutex;
 
 Vote testVote = Vote();
 
@@ -34,7 +36,11 @@ void voting()
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 	while (!stopVotingThread) {
 		//for (int i = 1; i < 15; i++) {
+		//testVote_mutex.lock();
+		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		testVote.voterLogin();
+		ulVM.unlock();
+		//testVote_mutex.unlock();
 		std::this_thread::sleep_for(std::chrono::seconds(5));
 		if (stopVotingThread == true) {
 			stopMiningThread = true;
@@ -72,17 +78,21 @@ void mining()
 	std::cout << "Test Main.cpp: Mining Thread Initialized" << std::endl;
 	
 	Blockchain bChain = Blockchain();
+	std::unique_lock<std::mutex> ulVM(vote_mutex);
 	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
+	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
 	for (int i = 1; i < 5; i++) {
 		blockIndex = i;
+		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		bChain.AddBlock(Block(i, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
 		{
 			testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
 		}
 		testVote.unverifiedVotes = "";
+		ulVM.unlock();
 		//std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(15));
 		/*if (stopMiningThread == true) {
@@ -97,7 +107,7 @@ void mining()
 		}*/
 	}
 	stopVotingThread = true;
-	std::cout << "Test Main.cpp: stopVotingThread set to true" << std::endl;
+	std::cout << "\nTest Main.cpp: stopVotingThread set to true" << std::endl;
 	while (stopMiningThread== false) {
 		std::this_thread::sleep_for(std::chrono::seconds(15));
 		if (stopMiningThread == true) {
