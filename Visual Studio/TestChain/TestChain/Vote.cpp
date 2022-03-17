@@ -171,19 +171,19 @@ void Vote::totalVerifiedVotes()
 		//std::cout << line << std::endl;
 		if (lineVerifiedVotesSS.find(",A,") != std::string::npos) {
 			totalVotesA++;
-			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+			//std::cout << "Test Vote.cpp: Vote added to: A" << std::endl;
 		}
 		else if (lineVerifiedVotesSS.find(",B,") != std::string::npos) {
 			totalVotesB++;
-			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+			//std::cout << "Test Vote.cpp: Vote added to: B" << std::endl;
 		}
 		else if (lineVerifiedVotesSS.find(",C,") != std::string::npos) {
 			totalVotesC++;
-			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+			//std::cout << "Test Vote.cpp: Vote added to: C" << std::endl;
 		}
 		else if (lineVerifiedVotesSS.find(",D,") != std::string::npos) {
 			totalVotesD++;
-			std::cout << "Test Vote.cpp: Vote added to: " << totalVotesA << std::endl;
+			//std::cout << "Test Vote.cpp: Vote added to: D" << std::endl;
 		}
 	}
 	totalVotes = totalVotesA + totalVotesB + totalVotesC + totalVotesD;
