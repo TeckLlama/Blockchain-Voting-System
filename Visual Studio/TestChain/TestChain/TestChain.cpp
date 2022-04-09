@@ -10,7 +10,6 @@
 #include "sha256.h"
 
 std::mutex vote_mutex;
-
 Vote testVote = Vote();
 
 bool stopVotingThread = false;
@@ -36,27 +35,19 @@ void voting()
 	testVote.initializeValidVoterIDs();
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(2));
-	while (!stopVotingThread) {
-		//for (int i = 1; i < 15; i++) {
-		//testVote_mutex.lock();
+	while (!stopVotingThread) {		
 		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		testVote.voterLogin();
-		ulVM.unlock();
-		//testVote_mutex.unlock();
+		ulVM.unlock();		
 		std::this_thread::sleep_for(std::chrono::seconds(5));
+
 		if (stopVotingThread == true) {
 			stopMiningThread = true;
 			std::cout << "Test Main.cpp: stopMiningThread set to true" << std::endl;
 			std::cout << "Test Main.cpp: Vote Thread Exited" << std::endl;			
 			return;
-		}
-		
-		
-	}
-	//}
-	
-	/*stopMiningThread = true;
-	std::cout << "Test: stopMiningThread set to true" << std::endl;*/
+		}		
+	}	
 	// Old Manual Voting for 5 users
 	/*std::this_thread::sleep_for(std::chrono::seconds(5));
 	testVote.voterLogin();
@@ -74,9 +65,9 @@ void voting()
 	testVote.voterLogin();*/
 }
 void mining()
-{//	manually mines three blocks 
- //	@TODO Blockchain need to continue / end automaticly 
- // @TODO Data need to be populated with votes users votes
+{//	Mines the number of blocks allocated in the for loop at end of loop Voting Thread 
+ // Set to close after any inprogress votes are made then one additional block is mined 
+
 	std::cout << "Test Main.cpp: Mining Thread Initialized" << std::endl;
 	
 	Blockchain bChain = Blockchain();
@@ -97,16 +88,7 @@ void mining()
 		ulVM.unlock();
 		//std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes << std::endl;
 		std::this_thread::sleep_for(std::chrono::seconds(15));
-		/*if (stopMiningThread == true) {
-			bChain.AddBlock(Block(i+1, testVote.unverifiedVotes), testVote.unverifiedVotes);
-			if (testVote.unverifiedVotes != "")
-			{
-				testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
-			}
-			testVote.unverifiedVotes = "";
-			std::cout << "Test: VerifiedVotes\n" << testVote.verifiedVotes;
-			return;
-		}*/
+		
 	}
 	stopVotingThread = true;
 	std::cout << "\nTest Main.cpp: stopVotingThread set to true" << std::endl;
