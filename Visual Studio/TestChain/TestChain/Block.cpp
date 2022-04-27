@@ -34,7 +34,18 @@ void Block::MineBlock(uint32_t nDifficulty)
 inline std::string Block::generateBlockHash() const
 {// Converts block contents into string and generates sha256 hash
     std::stringstream ss;
-    ss << _nIndex << sPrevHash << blockTime << _nNonce << _sData ;
+    ss  <<   "----- Start of Block -----"
+        << "\n----- Block Index -----\n"         // Incrementing Block ID 
+        << _nIndex
+        << "\n----- Previous Block Hash -----\n" // SHA256 Hash of Previous Block
+        << sPrevHash
+        << "\n----- Block Solve Time -----\n"    // UNIX Timestamp of Solve Time
+        << blockTime
+        << "\n----- Block Nonce -----\n"         // Num Only Used Once: Value to find To solve Block
+        << _nNonce
+        << "\n----- Block Data -----\n"          // Block Data: 
+        << _sData                                // Genesis Containing Vote, Candidate & VoterPublicKeys           
+        << "\n----- End of Block -----";
     //std::cout << "TEST: Data Hashed: " + ss.str() + "\n";
     return sha256(ss.str());
 }

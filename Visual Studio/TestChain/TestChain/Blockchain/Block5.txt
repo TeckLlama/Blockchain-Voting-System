@@ -2,17 +2,17 @@
 ----- Block Index -----
 5
 ----- Previous Block Hash -----
-0000ad1c683810aa7644bf04fd1bf4c34442c6c475a46330282e1bbff2a8a7cd
+0000eebdb09ace26d1f56889a21c3571ded59944ffef090172c8c108feee0822
 ----- Block Solve Time -----
-1651022851
+1651023969
 ----- Block Nonce -----
-163444
+204035
 ----- Block Data -----
 Total Votes: 5
-Total Votes for [A]: 3	Labour
+Total Votes for [A]: 4	Labour
 Total Votes for [B]: 1	Conservative
-Total Votes for [C]: 1	Liberal Democrat
+Total Votes for [C]: 0	Liberal Democrat
 Total Votes for [D]: 0	Plaid Cymru
 ----- End of Block -----
 ----- Block Hash -----
-000040ee0c1ac74124bb118f2324b5ab41d1dac7e4ba967725050f42a2ff5ce5
+0000b1ab7fd308e1d74494e9962a79d52a7ba9947d9b9d9ca6415dc6c93dbf33
