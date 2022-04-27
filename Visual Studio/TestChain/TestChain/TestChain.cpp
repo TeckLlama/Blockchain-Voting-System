@@ -48,21 +48,7 @@ void voting()
 			return;
 		}		
 	}	
-	// Old Manual Voting for 5 users
-	/*std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();
-	std::this_thread::sleep_for(std::chrono::seconds(5));
-	testVote.voterLogin();*/
+	
 }
 void mining()
 {//	Mines the number of blocks allocated in the for loop at end of loop Voting Thread 
@@ -76,8 +62,7 @@ void mining()
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
-	for (blockIndex = 1; blockIndex < 5; blockIndex++) {
-		
+	for (blockIndex = 1; blockIndex < 3; blockIndex++) {		
 		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
@@ -87,51 +72,35 @@ void mining()
 		testVote.unverifiedVotes = "";
 		ulVM.unlock();
 		//std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(15));
-		
+		std::this_thread::sleep_for(std::chrono::seconds(15));		
 	}
 	stopVotingThread = true;
 	std::cout << "\nTest Main.cpp: stopVotingThread set to true" << std::endl;
 	while (stopMiningThread== false) {
 		std::this_thread::sleep_for(std::chrono::seconds(15));
 		if (stopMiningThread == true) {
-			blockIndex = blockIndex + 1;
-			bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
+			bChain.AddBlock(Block(blockIndex + 1, testVote.unverifiedVotes), testVote.unverifiedVotes);
 			if (testVote.unverifiedVotes != "")
 			{
 				testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
+				testVote.unverifiedVotes = "";
+			}			
+			if (stopVotingThread && stopMiningThread == true) {
+				testVote.totalVerifiedVotes();
+				bChain.AddBlock(Block(blockIndex + 2, testVote.voteBreakdown), testVote.voteBreakdown);
+				std::cout << testVote.voteBreakdown;
 			}
-			testVote.unverifiedVotes = "";
 			std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes<< std::endl;;
-			std::cout << "Test Main.cpp: stopVotingThread set to true" << std::endl;
 			std::cout << "Test Main.cpp: Mining Thread Exited" << std::endl;
 			return;
 		}
-	}
+	}	
 	
-	
-	//exit;
-	// Old Manual mining of 5 Blocks
-	/*bChain.AddBlock(Block(1, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(2, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(3, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(4, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));
-	bChain.AddBlock(Block(5, testVote.unverifiedVotes), testVote.unverifiedVotes);
-	testVote.unverifiedVotes = "";
-	std::this_thread::sleep_for(std::chrono::seconds(45));*/
 }
 
 int main()
 {
-	SetConsoleTitleA("Testchain");
+	SetConsoleTitleA("VoteChain");
 	
 	//generateTestHash();
 
@@ -165,9 +134,5 @@ int main()
 	if (menuChar == 'C') {
 		return 2;
 	}
-
-
-
-
     return 0;
 }

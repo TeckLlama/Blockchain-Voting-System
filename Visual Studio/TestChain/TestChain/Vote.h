@@ -48,7 +48,7 @@ public:
 
 	void voterLogin();
 
-
+	std::string voteBreakdown;
 	int totalVotesA = 0;
 	int totalVotesB	= 0;
 	int totalVotesC = 0;

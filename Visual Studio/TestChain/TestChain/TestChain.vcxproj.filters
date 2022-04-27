@@ -30,9 +30,6 @@
     <ClCompile Include="Vote.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="SignMessage.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Block.h">
