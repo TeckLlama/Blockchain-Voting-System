@@ -9,7 +9,7 @@
 #include "Vote.h"
 #include "sha256.h"
 
-std::mutex vote_mutex;
+std::mutex voteVC_mutex;
 Vote testVote = Vote();
 
 bool stopVotingThread = false;
@@ -31,16 +31,13 @@ void voting()
 {//	Manually starts voting
 	std::cout << "Test Main.cpp: Vote Thread Initialized" << std::endl;	
 	testVote.initializeVoteCandidates();
-	std::unique_lock<std::mutex> ulVM(vote_mutex);
+	std::unique_lock<std::mutex> ulVM(voteVC_mutex);
 	testVote.initializeValidVoterIDs();
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(2));
 	while (!stopVotingThread) {		
-		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		testVote.voterLogin();
-		ulVM.unlock();		
-		std::this_thread::sleep_for(std::chrono::seconds(5));
-
+		std::this_thread::sleep_for(std::chrono::seconds(2));
 		if (stopVotingThread == true) {
 			stopMiningThread = true;
 			std::cout << "Test Main.cpp: stopMiningThread set to true" << std::endl;
@@ -57,14 +54,14 @@ void mining()
 	std::cout << "Test Main.cpp: Mining Thread Initialized" << std::endl;
 	
 	Blockchain bChain = Blockchain();
-	std::unique_lock<std::mutex> ulVM(vote_mutex);
+	std::unique_lock<std::mutex> ulVM(voteVC_mutex);
 	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
-	for (blockIndex = 1; blockIndex <= 3; blockIndex++) {		
-		std::unique_lock<std::mutex> ulVM(vote_mutex);
-		std::cout <<"Test Main.cpp: Loop Index "<< blockIndex;
+	for (blockIndex = 1; blockIndex < 30; blockIndex++) {		
+		std::unique_lock<std::mutex> ulVM(voteVC_mutex);
+		//std::cout <<"Test Main.cpp: Loop Index "<< blockIndex;
 		bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
 		{
@@ -73,22 +70,24 @@ void mining()
 		testVote.unverifiedVotes = "";
 		ulVM.unlock();
 		//std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(15));		
+		std::this_thread::sleep_for(std::chrono::seconds(120));		
 	}
 	stopVotingThread = true;
 	std::cout << "\nTest Main.cpp: stopVotingThread set to true" << std::endl;
 	while (stopMiningThread== false) {
 		std::this_thread::sleep_for(std::chrono::seconds(15));
 		if (stopMiningThread == true) {
-			bChain.AddBlock(Block(blockIndex+1, testVote.unverifiedVotes), testVote.unverifiedVotes);
+			std::unique_lock<std::mutex> ulVM(voteVC_mutex);
+			bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 			if (testVote.unverifiedVotes != "")
 			{
 				testVote.verifiedVotes += testVote.unverifiedVotes + "\n";
 				testVote.unverifiedVotes = "";
-			}			
+			}
+			ulVM.unlock();
 			if (stopVotingThread && stopMiningThread == true) {
 				testVote.totalVerifiedVotes();
-				bChain.AddBlock(Block(blockIndex + 2, testVote.voteBreakdown), testVote.voteBreakdown);
+				bChain.AddBlock(Block(blockIndex + 1, testVote.voteBreakdown), testVote.voteBreakdown);
 				
 			}
 			std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes<< std::endl;;

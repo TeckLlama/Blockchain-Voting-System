@@ -148,8 +148,15 @@
   <ItemGroup>
     <ClInclude Include="Block.h" />
     <ClInclude Include="Blockchain.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="sha256.h" />
     <ClInclude Include="Vote.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="TestChain.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="icon1.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

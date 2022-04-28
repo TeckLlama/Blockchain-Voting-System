@@ -1,6 +1,6 @@
 #include "Vote.h"
 
-
+std::mutex vote_mutex;
 void Vote::cinYesOrNo(std::string yNQuestion)
 {// cinYesOrNo is used to get input of Y or N from user 
 	do {// changed from cin to _getch to force input of one char 
@@ -116,13 +116,15 @@ void Vote::userInputVote()
 		std::stringstream voteTimeSS;
 		voteTimeSS << voteTime;
 		voteTimeString = voteTimeSS.str();;
+		std::unique_lock<std::mutex> ulVM(vote_mutex);
 		if (unverifiedVotes == "")
 		{
 			unverifiedVotes += userVoterID + "," + userInputVoteChar[0] + "," + voteTimeString;
 		}
 		else {
 			unverifiedVotes += "\n" + userVoterID + "," + userInputVoteChar[0] + "," + voteTimeString;
-		}		
+		}
+		ulVM.unlock();
 		std::cout << "Your input has been saved and will be added to the next block verified at this node" << std::endl;
 		//std::cout << "TEST: unverifiedVotes Current Value " << unverifiedVotes << std::endl;
 		//voterLogin();
