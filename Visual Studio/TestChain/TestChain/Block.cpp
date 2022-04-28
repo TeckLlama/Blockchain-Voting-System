@@ -46,7 +46,7 @@ inline std::string Block::generateBlockHash() const
         << "\n----- Block Data -----\n"          // Block Data: 
         << _sData                                // Genesis Containing Vote, Candidate & VoterPublicKeys           
         << "\n----- End of Block -----";
-    //std::cout << "TEST: Data Hashed: " + ss.str() + "\n";
+    //std::cout << "TEST: Data Hashed: \n" + ss.str() + "\n";
     return sha256(ss.str());
 }
 
