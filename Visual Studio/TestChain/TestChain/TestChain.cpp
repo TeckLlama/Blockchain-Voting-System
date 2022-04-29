@@ -28,13 +28,13 @@ void generateTestHash()
 
 
 void voting()
-{//	Manually starts voting
+{//	Voting Thread
 	std::cout << "Test Main.cpp: Vote Thread Initialized" << std::endl;	
 	testVote.initializeVoteCandidates();
 	std::unique_lock<std::mutex> ulVM(voteVC_mutex);
 	testVote.initializeValidVoterIDs();
 	ulVM.unlock();
-	std::this_thread::sleep_for(std::chrono::seconds(2));
+	std::this_thread::sleep_for(std::chrono::seconds(6));
 	while (!stopVotingThread) {		
 		testVote.voterLogin();
 		std::this_thread::sleep_for(std::chrono::seconds(2));
@@ -50,18 +50,17 @@ void voting()
 void mining()
 {//	Mines the number of blocks allocated in the for loop at end of loop Voting Thread 
  // Set to close after any inprogress votes are made then one additional block is mined 
-
 	std::cout << "Test Main.cpp: Mining Thread Initialized" << std::endl;
-	
 	Blockchain bChain = Blockchain();
 	std::unique_lock<std::mutex> ulVM(voteVC_mutex);
 	bChain.GenerateGenesis(Block(0, testVote.voterInitialStatus), testVote.voterInitialStatus);
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
-	for (blockIndex = 1; blockIndex < 30; blockIndex++) {		
-		std::unique_lock<std::mutex> ulVM(voteVC_mutex);
-		//std::cout <<"Test Main.cpp: Loop Index "<< blockIndex;
+	for (blockIndex = 1; blockIndex < 5; blockIndex++) {
+		//std::cout << "\nTest Main.cpp: blockIndex " << blockIndex << std::endl;
+		std::this_thread::sleep_for(std::chrono::seconds(60));
+		std::unique_lock<std::mutex> ulVM(voteVC_mutex);		
 		bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
 		{
@@ -70,7 +69,7 @@ void mining()
 		testVote.unverifiedVotes = "";
 		ulVM.unlock();
 		//std::cout << "Test Main.cpp: VerifiedVotes\n" << testVote.verifiedVotes << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(120));		
+			
 	}
 	stopVotingThread = true;
 	std::cout << "\nTest Main.cpp: stopVotingThread set to true" << std::endl;
@@ -124,9 +123,7 @@ int main()
 		std::thread miningThread(mining);
 		voteingThread.join();
 		miningThread.join();
-		//if (stopVotingThread && stopMiningThread == true) {
-		//	testVote.totalVerifiedVotes();
-		//}
+		
 	}
 	if (menuChar == 'B') {
 		return 2;
