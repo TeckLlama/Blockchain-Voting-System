@@ -1,0 +1,24 @@
+----- Start of Block -----
+----- Block Index -----
+12
+----- Previous Block Hash -----
+0000bd7d24254fbef17152efe2aed41eb3231d4980b36ec28fcc1740486fe087
+----- Block Solve Time -----
+1651604931
+----- Block Nonce -----
+147039
+----- Block Data -----
+16DM4hmBhhXoXMpDwfUmC6oL3dhA1ssh7U,D,1651604812
+1E9Aspw23U3nr2DypF1Me7vEKwRA9cwidx,A,1651604825
+1PvHQSfUeVTc6HakHV7PKPUqQEXjEzcaEh,B,1651604840
+1CWKo3XmxiJSHoK3dmJw86n6ZRAk6m5Mf3,A,1651604849
+16T8uEAVhHCjoH77CbEKRWp5mugbCBV1uD,C,1651604860
+1L3qmpSHTAZM8ojkevBthXeJA2pduFoxM2,D,1651604869
+123xaUVoV4kVk54Dm3k33BauGCtW6SkQjD,C,1651604878
+18pBW29YE1TAh6xKx1KsLf8ypG98F2nyMJ,A,1651604888
+1Frixn9u9E9GdUkH8kjGLj7uqkAZPL6wAv,C,1651604901
+1HuSScekWNT3Q4Hmiprtno1QJL4yfcxYkm,B,1651604912
+1BFdsJUnkpcSLcebxdC6xoeemztTC1wHAa,B,1651604924
+----- End of Block -----
+----- Block Hash -----
+0000a7da2e9dcb16fc39cdbf19e06dd95bd3f1440c6552ed1df0a9cb16522a23
