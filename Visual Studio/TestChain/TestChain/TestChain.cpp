@@ -57,9 +57,9 @@ void mining()
 	ulVM.unlock();
 	std::this_thread::sleep_for(std::chrono::seconds(5));
 	int blockIndex;
-	for (blockIndex = 1; blockIndex < 5; blockIndex++) {
+	for (blockIndex = 1; blockIndex < 15; blockIndex++) {
 		//std::cout << "\nTest Main.cpp: blockIndex " << blockIndex << std::endl;
-		std::this_thread::sleep_for(std::chrono::seconds(60));
+		std::this_thread::sleep_for(std::chrono::seconds(120));
 		std::unique_lock<std::mutex> ulVM(voteVC_mutex);		
 		bChain.AddBlock(Block(blockIndex, testVote.unverifiedVotes), testVote.unverifiedVotes);
 		if (testVote.unverifiedVotes != "")
@@ -116,7 +116,7 @@ int main()
 		menuChar = toupper(menuChar);
 		//std::cin >> userInputChar;
 	} while (/*std::cin.fail() ||*/ menuChar != 'A' && menuChar != 'B' && menuChar != 'C' /* && menuChar != 'D'*/);
-	std::cout << "Test Vote.cpp: Accepted User input Char " << menuChar << std::endl;
+	//std::cout << "Test Main.cpp: Accepted User input Char " << menuChar << std::endl;
 	if (menuChar == 'A') {
 		std::thread voteingThread(voting);
 		std::this_thread::sleep_for(std::chrono::seconds(1));
