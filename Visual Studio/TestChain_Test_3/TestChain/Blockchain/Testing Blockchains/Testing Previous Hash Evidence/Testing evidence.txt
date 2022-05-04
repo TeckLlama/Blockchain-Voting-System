@@ -1,0 +1,8 @@
+Genasis Block Hash (Block 1 Listed hash)
+3e67f64048c1b6e6cb0e761468e013db3fae4b4a0eb1cc839e0e9ebf32377b38
+Block 1 Hash 
+	Block1Reported: 0000dcde8c2fc115e90ec0eab4b4b22e23f9c05ef46d8e26281a6ae14e917062
+	Block2PrevHash: 0000dcde8c2fc115e90ec0eab4b4b22e23f9c05ef46d8e26281a6ae14e917062
+Block 2 Hash
+	Block2Reported: 0000239cd6ae5e8ed1847c5edf9df9bbe397bfe339676b28dc9891ce5296dc57
+	Block3PrevHash: 0000239cd6ae5e8ed1847c5edf9df9bbe397bfe339676b28dc9891ce5296dc57

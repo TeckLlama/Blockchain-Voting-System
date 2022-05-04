@@ -1,0 +1,18 @@
+----- Start of Block -----
+----- Block Index -----
+3
+----- Previous Block Hash -----
+00004b849a44dce896601c4b02ea8cb79f3e745a496c17dee396f58724376997
+----- Block Solve Time -----
+1651622086
+----- Block Nonce -----
+167235
+----- Block Data -----
+1JC4gdDCvn66JL5aV2LJYVU4soZbWXbQtZ,B,1651622037
+1P3V7c6VrdN2yW9yRK4EGKNBnGsMBPULc6,C,1651622052
+1NRrfqwMHimshgiPKhrRdaVtGovSRNBA3d,A,1651622066
+17rLt8t6dJyGRykPVytJ438S7w3bGB29Qs,B,1651622076
+1G9gKbavM1DNhvXGdabDCKk1mQaLfRbGRb,C,1651622086
+----- End of Block -----
+----- Block Hash -----
+00007a13b42a8747ec5db28d05a9a524a6efd566e1d5430e9a5b90427b9930c7
