@@ -19,10 +19,30 @@ char menuChar;
 
 void generateTestHash()
 {// function to test accuracy of sha256
+	std::cout << "\nTest Main.cpp: generateTestHash Started" << std::endl;
 	std::stringstream ss;
 	ss << "password";
-	std::cout << "Test Main.cpp: " + ss.str() + "\n";
-	std::cout << sha256(ss.str());
+	std::cout << "Test Hash: " << ss.str() << std::endl;
+	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
+	ss.str("");
+	ss << "passWORD";
+	std::cout << "Test Hash: " << ss.str() << std::endl; 
+	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
+	ss.str("");
+	ss << "9000password1000";
+	std::cout << "Test Hash: " << ss.str() << std::endl;
+	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
+	ss.str("");
+	ss << "--he\\0w@r1d--";
+	std::cout << "Test Hash: " << ss.str() << std::endl;
+	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
+	ss.str("");
+	ss << "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+	std::cout << "Test Hash: " << ss.str() << std::endl;
+	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
+	
+	
+	
 }
 
 
@@ -110,7 +130,7 @@ int main()
 	do {// changed from cin to _getch to force input of one char 
 		menuChar = (char)0;		
 		std::cout << "[A] Start Voting [A]"  << std::endl;
-		std::cout << "[B] Empty        [B]" << std::endl;
+		std::cout << "[B] Test Hash    [B]" << std::endl;
 		std::cout << "[C] Exit         [C]" <<  std::endl;
       //std::cout << "[D] Exit         [D]" << std::endl;
 		
@@ -130,6 +150,8 @@ int main()
 		
 	}
 	if (menuChar == 'B') {
+		generateTestHash();
+		std::this_thread::sleep_for(std::chrono::seconds(10));
 		return 2;
 	}
 	if (menuChar == 'C') {
