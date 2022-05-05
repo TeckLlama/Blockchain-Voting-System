@@ -5,11 +5,11 @@
 // Block.cpp: This file file contains the functions for the Block Class.
 #include "Block.h"
 
-Block::Block(uint32_t nIndexIn, const std::string& sDataIn) : blockIndex(nIndexIn), blockDataSTR(sDataIn)
+Block::Block(uint32_t blockIndex, const std::string& sDataIn) : blockIndex(blockIndex), blockDataSTR(sDataIn)
 {
-    nIndexIn;                   // Incrementing Block ID 
+    blockIndex;                   // Incrementing Block ID 
     prevBlockHash;                  // SHA256 Hash of Previous Block
-    blockTime = time(nullptr);  // UNIX Timestamp of Solve Time
+    blockSolveTime = time(nullptr);  // UNIX Timestamp of Solve Time
     blockNonce = 123456;           // Num Only Used Once: Value to find To solve Block
     sDataIn;                    // Block Data: 
                                 //       Genesis: Vote, Candidate & VoterPublicKeys 
@@ -45,7 +45,7 @@ inline std::string Block::generateBlockHash() const
         << "\n----- Previous Block Hash -----\n" // SHA256 Hash of Previous Block
         << prevBlockHash
         << "\n----- Block Solve Time -----\n"    // UNIX Timestamp of Solve Time
-        << blockTime
+        << blockSolveTime
         << "\n----- Block Nonce -----\n"         // Num Only Used Once: Value to find To solve Block
         << blockNonce
         << "\n----- Block Data -----\n"          // Block Data: 
@@ -66,7 +66,7 @@ void Block::saveNewBlock(uint32_t blockIndex)
         << "\n----- Previous Block Hash -----\n" // SHA256 Hash of Previous Block
         << prevBlockHash
         << "\n----- Block Solve Time -----\n"    // UNIX Timestamp of Solve Time
-        << blockTime
+        << blockSolveTime
         << "\n----- Block Nonce -----\n"         // Num Only Used Once: Value to find To solve Block
         << blockNonce
         << "\n----- Block Data -----\n"          // Block Data: 

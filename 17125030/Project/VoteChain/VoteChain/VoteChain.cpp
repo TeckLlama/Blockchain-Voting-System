@@ -33,7 +33,7 @@ void generateTestHash()
 	std::cout << "Test Hash: " << ss.str() << std::endl;
 	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
 	ss.str("");
-	ss << "--he\\0w@r1d--";
+	ss << "--he//0w@r1d--";
 	std::cout << "Test Hash: " << ss.str() << std::endl;
 	std::cout << "SHA256 Hash: " << sha256(ss.str()) << std::endl;
 	ss.str("");

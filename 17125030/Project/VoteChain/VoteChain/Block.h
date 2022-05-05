@@ -26,7 +26,7 @@ public:
 
 private:
     std::string blockDataSTR;
-    time_t blockTime;
+    time_t blockSolveTime;
 
 };
 #endif //VOTECHAIN_BLOCK
